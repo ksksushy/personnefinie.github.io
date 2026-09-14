@@ -82,86 +82,116 @@
   </div>
 </section>
 
-<!-- GALLERY WITH CATEGORY FILTERS -->
+<!-- GALLERY WITH CATEGORY COVERS -->
 <section class="gallery" id="gallery">
   <div class="gallery-inner">
     <div class="about-tag reveal-up">02 · работы</div>
     <h2 class="section-title reveal-up">Каталог <span class="accent">работ</span></h2>
-    <p class="gallery-note reveal-up">Ниже — структура портфолио по категориям. Плейсхолдеры покажут, где уже есть работы, а где место под новые.</p>
+    <p class="gallery-note reveal-up">Выбери категорию — откроется просмотр с возможностью листать все работы внутри неё.</p>
 
-    <div class="filters reveal-up">
-      <button class="filter-btn active" data-filter="all">Все</button>
-      <button class="filter-btn" data-filter="portrait">Портреты</button>
-      <button class="filter-btn" data-filter="concept">Концепт-арт</button>
-      <button class="filter-btn" data-filter="product">Продуктовый визуал</button>
-      <button class="filter-btn" data-filter="abstract">Абстракция</button>
-      <button class="filter-btn" data-filter="tattoo">Тату-эскизы</button>
-    </div>
+    <div class="category-grid">
 
-    <div class="work-grid">
-      <div class="work-item reveal-up" data-cat="portrait">
-        <img class="work-placeholder" src="portrait-01.jpg" alt="Портрет" style="object-fit:cover;width:100%;height:100%;">
-        <div class="work-caption"><span>Портреты</span><h4>Портрет со сменой ракурса</h4></div>
+      <div class="category-card reveal-up" data-cat="portrait">
+        <img class="category-cover" src="portrait-01.jpg" alt="Портреты">
+        <div class="category-overlay">
+          <span class="category-count">4 работы</span>
+          <h3>Портреты</h3>
+          <span class="category-open">смотреть все →</span>
+        </div>
       </div>
-      <div class="work-item reveal-up" data-cat="portrait">
-        <img class="work-placeholder" src="portrait-02.jpg" alt="Портрет" style="object-fit:cover;width:100%;height:100%;">
-        <div class="work-caption"><span>Портреты</span><h4>Крупный план</h4></div>
+
+      <div class="category-card reveal-up" data-cat="concept">
+        <img class="category-cover" src="concept-spartan.jpg" alt="Концепт-арт">
+        <div class="category-overlay">
+          <span class="category-count">4 работы</span>
+          <h3>Концепт-арт</h3>
+          <span class="category-open">смотреть все →</span>
+        </div>
       </div>
-      <div class="work-item reveal-up" data-cat="portrait">
-        <img class="work-placeholder" src="portrait-03.jpg" alt="Портрет" style="object-fit:cover;width:100%;height:100%;">
-        <div class="work-caption"><span>Портреты</span><h4>Профиль</h4></div>
+
+      <div class="category-card reveal-up" data-cat="product">
+        <img class="category-cover" src="product-01.jpg" alt="Продуктовый визуал">
+        <div class="category-overlay">
+          <span class="category-count">2 работы</span>
+          <h3>Продуктовый визуал</h3>
+          <span class="category-open">смотреть все →</span>
+        </div>
       </div>
-      <div class="work-item reveal-up" data-cat="portrait">
-        <img class="work-placeholder" src="portrait-04.jpg" alt="Портрет" style="object-fit:cover;width:100%;height:100%;">
-        <div class="work-caption"><span>Портреты</span><h4>Улыбка</h4></div>
-      </div>
-      <div class="work-item work-item-big reveal-up" data-cat="concept">
-        <img class="work-placeholder" src="concept-spartan.jpg" alt="Спартанец — концепт" style="object-fit:cover;width:100%;height:100%;">
-        <div class="work-caption"><span>Концепт-арт</span><h4>Персонаж: спартанский воин (лица)</h4></div>
-      </div>
-      <div class="work-item reveal-up" data-cat="concept">
-        <img class="work-placeholder" src="concept-spartan-2.jpg" alt="Спартанец в полный рост — концепт" style="object-fit:cover;width:100%;height:100%;">
-        <div class="work-caption"><span>Концепт-арт</span><h4>Персонаж: спартанский воин (в полный рост)</h4></div>
-      </div>
-      <div class="work-item reveal-up" data-cat="concept">
-        <img class="work-placeholder" src="concept-maid.jpg" alt="Готическая мейд — концепт" style="object-fit:cover;width:100%;height:100%;">
-        <div class="work-caption"><span>Концепт-арт</span><h4>Персонаж: готическая мейд</h4></div>
-      </div>
-      <div class="work-item reveal-up" data-cat="concept">
-        <img class="work-placeholder" src="concept-hoodie.jpg" alt="Персонаж в худи — концепт" style="object-fit:cover;width:100%;height:100%;">
-        <div class="work-caption"><span>Концепт-арт</span><h4>Персонаж: стрит-стайл</h4></div>
-      </div>
-      <div class="work-item reveal-up" data-cat="product">
-        <img class="work-placeholder" src="product-01.jpg" alt="Продуктовый визуал" style="object-fit:cover;width:100%;height:100%;">
-        <div class="work-caption"><span>Продуктовый визуал</span><h4>Спортивный костюм — крупный план</h4></div>
-      </div>
-      <div class="work-item reveal-up" data-cat="product">
-        <img class="work-placeholder" src="product-02.jpg" alt="Продуктовый визуал — в полный рост" style="object-fit:cover;width:100%;height:100%;">
-        <div class="work-caption"><span>Продуктовый визуал</span><h4>Спортивный костюм — в полный рост</h4></div>
-      </div>
-      <div class="work-item work-item-big reveal-up" data-cat="abstract">
+
+      <div class="category-card category-empty reveal-up" data-cat="abstract">
         <div class="work-placeholder ph3"></div>
-        <div class="work-caption"><span>Абстракция</span><h4>Экспериментальная работа</h4></div>
-        <div class="empty-flag">добавить работу</div>
+        <div class="category-overlay">
+          <span class="category-count">пусто — сделать</span>
+          <h3>Абстракция</h3>
+          <span class="category-open">смотреть все →</span>
+        </div>
       </div>
-      <div class="work-item reveal-up" data-cat="abstract">
-        <div class="work-placeholder ph4"></div>
-        <div class="work-caption"><span>Абстракция</span><h4>Декоративный визуал</h4></div>
-        <div class="empty-flag">добавить работу</div>
-      </div>
-      <div class="work-item reveal-up" data-cat="tattoo">
+
+      <div class="category-card category-empty reveal-up" data-cat="tattoo">
         <div class="work-placeholder ph1"></div>
-        <div class="work-caption"><span>Тату-эскизы</span><h4>ИИ-референс для тату</h4></div>
-        <div class="empty-flag">добавить работу</div>
+        <div class="category-overlay">
+          <span class="category-count">пусто — сделать</span>
+          <h3>Тату-эскизы</h3>
+          <span class="category-open">смотреть все →</span>
+        </div>
       </div>
-      <div class="work-item reveal-up" data-cat="tattoo">
-        <div class="work-placeholder ph2"></div>
-        <div class="work-caption"><span>Тату-эскизы</span><h4>Композиция-эскиз</h4></div>
-        <div class="empty-flag">пусто — сделать</div>
-      </div>
+
     </div>
   </div>
 </section>
+
+<!-- LIGHTBOX VIEWER -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">✕</button>
+  <button class="lightbox-arrow lightbox-prev" id="lightboxPrev">‹</button>
+  <div class="lightbox-stage">
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <div class="lightbox-info">
+      <span class="lightbox-cat" id="lightboxCat"></span>
+      <h4 class="lightbox-title" id="lightboxTitle"></h4>
+      <span class="lightbox-index" id="lightboxIndex"></span>
+    </div>
+  </div>
+  <button class="lightbox-arrow lightbox-next" id="lightboxNext">›</button>
+</div>
+
+<script>
+  var galleryData = {
+    portrait: {
+      title: "Портреты",
+      items: [
+        { src: "portrait-01.jpg", title: "Портрет со сменой ракурса" },
+        { src: "portrait-02.jpg", title: "Крупный план" },
+        { src: "portrait-03.jpg", title: "Профиль" },
+        { src: "portrait-04.jpg", title: "Улыбка" }
+      ]
+    },
+    concept: {
+      title: "Концепт-арт",
+      items: [
+        { src: "concept-spartan.jpg", title: "Персонаж: спартанский воин (лица)" },
+        { src: "concept-spartan-2.jpg", title: "Персонаж: спартанский воин (в полный рост)" },
+        { src: "concept-maid.jpg", title: "Персонаж: готическая мейд" },
+        { src: "concept-hoodie.jpg", title: "Персонаж: стрит-стайл" }
+      ]
+    },
+    product: {
+      title: "Продуктовый визуал",
+      items: [
+        { src: "product-01.jpg", title: "Спортивный костюм — крупный план" },
+        { src: "product-02.jpg", title: "Спортивный костюм — в полный рост" }
+      ]
+    },
+    abstract: {
+      title: "Абстракция",
+      items: []
+    },
+    tattoo: {
+      title: "Тату-эскизы",
+      items: []
+    }
+  };
+</script>
 
 <!-- VIDEO SECTION -->
 <section class="video-section" id="video">
