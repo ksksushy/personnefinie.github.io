@@ -7,7 +7,7 @@ window.addEventListener('mousemove', (e) => {
   cursorDot.style.left = e.clientX + 'px';
   cursorDot.style.top = e.clientY + 'px';
 });
-document.querySelectorAll('a, button, .work-item, .about-step, .service-card').forEach(el=>{
+document.querySelectorAll('a, button, .work-item, .video-item, .about-step, .service-card').forEach(el=>{
   el.addEventListener('mouseenter', ()=>{
     cursorDot.style.width = '36px';
     cursorDot.style.height = '36px';
@@ -34,22 +34,17 @@ updateProgress();
 // === Nav background on scroll ===
 const nav = document.getElementById('nav');
 function updateNav(){
-  if(window.scrollY > 40){
-    nav.classList.add('scrolled');
-  } else {
-    nav.classList.remove('scrolled');
-  }
+  if(window.scrollY > 40){ nav.classList.add('scrolled'); }
+  else { nav.classList.remove('scrolled'); }
 }
 window.addEventListener('scroll', updateNav);
 updateNav();
 
-// === Reveal on scroll (IntersectionObserver) ===
+// === Reveal on scroll ===
 const revealEls = document.querySelectorAll('.reveal-up');
 const observer = new IntersectionObserver((entries)=>{
   entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add('visible');
-    }
+    if(entry.isIntersecting){ entry.target.classList.add('visible'); }
   });
 }, { threshold: 0.15 });
 revealEls.forEach((el, i)=>{
@@ -57,7 +52,7 @@ revealEls.forEach((el, i)=>{
   observer.observe(el);
 });
 
-// === Hero parallax on scroll ===
+// === Hero parallax ===
 const heroLines = document.querySelectorAll('.hero-title .line');
 const orb1 = document.querySelector('.orb1');
 const orb2 = document.querySelector('.orb2');
@@ -72,7 +67,7 @@ window.addEventListener('scroll', ()=>{
   if(orb2) orb2.style.transform = `translateY(${scrolled * -0.1}px)`;
 });
 
-// === Smooth anchor scroll (fallback) ===
+// === Smooth anchor scroll ===
 document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
   anchor.addEventListener('click', function(e){
     const target = document.querySelector(this.getAttribute('href'));
@@ -83,7 +78,25 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
   });
 });
 
-// === Contact form (demo — no backend yet) ===
+// === Gallery category filters ===
+const filterBtns = document.querySelectorAll('.filter-btn');
+const workItems = document.querySelectorAll('.work-item');
+filterBtns.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    filterBtns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    workItems.forEach(item=>{
+      if(filter === 'all' || item.dataset.cat === filter){
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+  });
+});
+
+// === Contact form (demo) ===
 const form = document.getElementById('contactForm');
 if(form){
   form.addEventListener('submit', function(e){
