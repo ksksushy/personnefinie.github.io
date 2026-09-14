@@ -3,29 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>personnefinie — Tattoo & AI</title>
+<title>personnefinie AI Lab — генеративный визуал</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Custom cursor -->
 <div class="cursor-dot" id="cursorDot"></div>
-
-<!-- Progress bar -->
 <div class="scroll-progress"><div class="scroll-progress-bar" id="progressBar"></div></div>
 
 <!-- NAV -->
 <nav class="nav" id="nav">
-  <div class="nav-logo">personne<span>finie</span></div>
+  <div class="nav-logo">personnefinie<span> AI Lab</span></div>
   <ul class="nav-links">
-    <li><a href="#about">о мне</a></li>
+    <li><a href="#about">о проекте</a></li>
+    <li><a href="#gallery">работы</a></li>
+    <li><a href="#video">видео</a></li>
     <li><a href="#services">услуги</a></li>
-    <li><a href="#work">работы</a></li>
     <li><a href="#contact">контакт</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">записаться</a>
+  <a href="#contact" class="nav-cta">заказать</a>
 </nav>
 
 <!-- HERO -->
@@ -37,18 +35,18 @@
     <div class="orb orb2"></div>
   </div>
   <div class="hero-content">
-    <p class="hero-eyebrow reveal-up">tattoo artist × ai enthusiast</p>
+    <p class="hero-eyebrow reveal-up">generative art & ai visuals</p>
     <h1 class="hero-title">
-      <span class="line" data-speed="0.4">personne</span>
-      <span class="line accent" data-speed="0.6">finie</span>
+      <span class="line" data-speed="0.4">personnefinie</span>
+      <span class="line accent" data-speed="0.6">AI Lab</span>
     </h1>
     <p class="hero-sub reveal-up">
-      Строю формы на коже. Исследую формы в нейросетях.<br>
-      Тату как ремесло, ИИ как новый холст.
+      Исследую визуальные возможности нейросетей.<br>
+      Изображения, видео и эксперименты на грани технологии и искусства.
     </p>
     <div class="hero-actions reveal-up">
-      <a href="#contact" class="btn btn-primary">Записаться на тату</a>
-      <a href="#services" class="btn btn-ghost">ИИ-услуги</a>
+      <a href="#gallery" class="btn btn-primary">Смотреть работы</a>
+      <a href="#services" class="btn btn-ghost">Заказать проект</a>
     </div>
   </div>
   <div class="scroll-hint">
@@ -60,26 +58,140 @@
 <!-- ABOUT -->
 <section class="about" id="about">
   <div class="about-inner">
-    <div class="about-tag reveal-up">01 · путь</div>
+    <div class="about-tag reveal-up">01 · о проекте</div>
     <h2 class="section-title reveal-up">
-      От чертежей — к коже,<br>от кожи — к <span class="accent">алгоритмам.</span>
+      Технология как <span class="accent">холст.</span>
     </h2>
     <div class="about-grid">
       <div class="about-step reveal-up">
         <span class="about-num">01</span>
-        <h3>Строитель</h3>
-        <p>Образование дало главное — понимание конструкции, пропорции и точности. То, что держит форму, будь то здание или композиция на теле.</p>
+        <h3>Инженерное мышление</h3>
+        <p>Опыт в точных построениях и форме помогает выстраивать композицию и логику в генеративных работах — не просто "красиво", а осмысленно.</p>
       </div>
       <div class="about-step reveal-up">
         <span class="about-num">02</span>
-        <h3>Тату-мастер</h3>
-        <p>Перенесла инженерное чувство формы в тату-искусство. Работаю с композицией, линией и индивидуальным подходом к каждому эскизу.</p>
+        <h3>Художественный взгляд</h3>
+        <p>Годы в тату-искусстве развили чувство линии, баланса и стиля — это напрямую переносится в работу с промптами и генерацией изображений.</p>
       </div>
       <div class="about-step reveal-up">
         <span class="about-num">03</span>
-        <h3>ИИ-исследователь</h3>
-        <p>Погружаюсь в генеративные модели — изображение, видео, визуальные эксперименты. Помогаю другим находить свой стиль через нейросети.</p>
+        <h3>ИИ-исследование</h3>
+        <p>Изучаю генеративные модели изображений и видео — Midjourney, Stable Diffusion, Runway — и превращаю технологию в авторский визуальный язык.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY WITH CATEGORY FILTERS -->
+<section class="gallery" id="gallery">
+  <div class="gallery-inner">
+    <div class="about-tag reveal-up">02 · работы</div>
+    <h2 class="section-title reveal-up">Каталог <span class="accent">работ</span></h2>
+    <p class="gallery-note reveal-up">Ниже — структура портфолио по категориям. Плейсхолдеры покажут, где уже есть работы, а где место под новые.</p>
+
+    <div class="filters reveal-up">
+      <button class="filter-btn active" data-filter="all">Все</button>
+      <button class="filter-btn" data-filter="portrait">Портреты</button>
+      <button class="filter-btn" data-filter="concept">Концепт-арт</button>
+      <button class="filter-btn" data-filter="product">Продуктовый визуал</button>
+      <button class="filter-btn" data-filter="abstract">Абстракция</button>
+      <button class="filter-btn" data-filter="tattoo">Тату-эскизы</button>
+    </div>
+
+    <div class="work-grid">
+      <div class="work-item reveal-up" data-cat="portrait">
+        <div class="work-placeholder ph1"></div>
+        <div class="work-caption"><span>Портреты</span><h4>Стилизованный портрет</h4></div>
+        <div class="empty-flag">добавить работу</div>
+      </div>
+      <div class="work-item reveal-up" data-cat="portrait">
+        <div class="work-placeholder ph2"></div>
+        <div class="work-caption"><span>Портреты</span><h4>Аватар для соцсетей</h4></div>
+        <div class="empty-flag">добавить работу</div>
+      </div>
+      <div class="work-item work-item-big reveal-up" data-cat="concept">
+        <div class="work-placeholder ph3"></div>
+        <div class="work-caption"><span>Концепт-арт</span><h4>Персонаж / мир</h4></div>
+        <div class="empty-flag">добавить работу</div>
+      </div>
+      <div class="work-item reveal-up" data-cat="concept">
+        <div class="work-placeholder ph4"></div>
+        <div class="work-caption"><span>Концепт-арт</span><h4>Атмосферная сцена</h4></div>
+        <div class="empty-flag">добавить работу</div>
+      </div>
+      <div class="work-item reveal-up" data-cat="product">
+        <div class="work-placeholder ph1"></div>
+        <div class="work-caption"><span>Продуктовый визуал</span><h4>Товар / упаковка</h4></div>
+        <div class="empty-flag">пусто — сделать</div>
+      </div>
+      <div class="work-item reveal-up" data-cat="product">
+        <div class="work-placeholder ph2"></div>
+        <div class="work-caption"><span>Продуктовый визуал</span><h4>Рекламный кадр</h4></div>
+        <div class="empty-flag">пусто — сделать</div>
+      </div>
+      <div class="work-item work-item-big reveal-up" data-cat="abstract">
+        <div class="work-placeholder ph3"></div>
+        <div class="work-caption"><span>Абстракция</span><h4>Экспериментальная работа</h4></div>
+        <div class="empty-flag">добавить работу</div>
+      </div>
+      <div class="work-item reveal-up" data-cat="abstract">
+        <div class="work-placeholder ph4"></div>
+        <div class="work-caption"><span>Абстракция</span><h4>Декоративный визуал</h4></div>
+        <div class="empty-flag">добавить работу</div>
+      </div>
+      <div class="work-item reveal-up" data-cat="tattoo">
+        <div class="work-placeholder ph1"></div>
+        <div class="work-caption"><span>Тату-эскизы</span><h4>ИИ-референс для тату</h4></div>
+        <div class="empty-flag">добавить работу</div>
+      </div>
+      <div class="work-item reveal-up" data-cat="tattoo">
+        <div class="work-placeholder ph2"></div>
+        <div class="work-caption"><span>Тату-эскизы</span><h4>Композиция-эскиз</h4></div>
+        <div class="empty-flag">пусто — сделать</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO SECTION -->
+<section class="video-section" id="video">
+  <div class="video-inner">
+    <div class="about-tag reveal-up">03 · видео</div>
+    <h2 class="section-title reveal-up">ИИ-<span class="accent">видео</span></h2>
+    <p class="gallery-note reveal-up">Анимация, короткие клипы и motion-эксперименты с нейросетями.</p>
+
+    <div class="video-grid">
+      <div class="video-item reveal-up">
+        <div class="work-placeholder ph3 video-ph">
+          <span class="play-icon">▶</span>
+        </div>
+        <div class="work-caption"><span>Анимация изображения</span><h4>Оживление портрета</h4></div>
+        <div class="empty-flag">добавить видео</div>
+      </div>
+      <div class="video-item reveal-up">
+        <div class="work-placeholder ph1 video-ph">
+          <span class="play-icon">▶</span>
+        </div>
+        <div class="work-caption"><span>Короткий клип</span><h4>Атмосферная история</h4></div>
+        <div class="empty-flag">пусто — сделать</div>
+      </div>
+      <div class="video-item reveal-up">
+        <div class="work-placeholder ph4 video-ph">
+          <span class="play-icon">▶</span>
+        </div>
+        <div class="work-caption"><span>Motion-визуал</span><h4>Абстрактная динамика</h4></div>
+        <div class="empty-flag">пусто — сделать</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<section class="marquee-section">
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>GENERATIVE&nbsp;•&nbsp;AI&nbsp;•&nbsp;VISUAL&nbsp;•&nbsp;ART&nbsp;•&nbsp;SYNTHETIC&nbsp;•&nbsp;</span>
+      <span>GENERATIVE&nbsp;•&nbsp;AI&nbsp;•&nbsp;VISUAL&nbsp;•&nbsp;ART&nbsp;•&nbsp;SYNTHETIC&nbsp;•&nbsp;</span>
     </div>
   </div>
 </section>
@@ -87,32 +199,32 @@
 <!-- SERVICES -->
 <section class="services" id="services">
   <div class="services-inner">
-    <div class="about-tag reveal-up">02 · услуги</div>
-    <h2 class="section-title reveal-up">Чем я <span class="accent">занимаюсь</span></h2>
+    <div class="about-tag reveal-up">04 · услуги</div>
+    <h2 class="section-title reveal-up">Что можно <span class="accent">заказать</span></h2>
 
     <div class="service-card reveal-up">
       <div class="service-num">01</div>
       <div class="service-body">
-        <h3>Тату на заказ</h3>
-        <p>Индивидуальные эскизы, проработка композиции, консультация по стилю и размещению. От небольших линий до крупных работ.</p>
-        <div class="service-tags"><span>эскиз</span><span>линwork</span><span>кастом</span></div>
+        <h3>Генерация изображения</h3>
+        <p>Одна готовая работа под запрос: портрет, концепт, продуктовый визуал или абстракция — в едином авторском стиле.</p>
+        <div class="service-tags"><span>midjourney</span><span>stable diffusion</span><span>1 работа</span></div>
       </div>
     </div>
 
     <div class="service-card reveal-up">
       <div class="service-num">02</div>
       <div class="service-body">
-        <h3>ИИ-визуалы и изображения</h3>
-        <p>Генерация уникальных изображений и референсов с помощью нейросетей — для тату-эскизов, обложек, личных проектов.</p>
-        <div class="service-tags"><span>midjourney</span><span>stable diffusion</span><span>референсы</span></div>
+        <h3>Серия изображений</h3>
+        <p>Набор из 3-5 работ в едином визуальном стиле — для соцсетей, портфолио, брендинга или личного проекта.</p>
+        <div class="service-tags"><span>серия 3-5</span><span>единый стиль</span></div>
       </div>
     </div>
 
     <div class="service-card reveal-up">
       <div class="service-num">03</div>
       <div class="service-body">
-        <h3>ИИ-видео</h3>
-        <p>Создание видео-контента с помощью генеративных моделей: анимация статичных работ, короткие визуальные истории, эксперименты.</p>
+        <h3>ИИ-видео / анимация</h3>
+        <p>Оживление статичного изображения, короткий видео-клип или motion-эксперимент на основе генеративных моделей.</p>
         <div class="service-tags"><span>runway</span><span>анимация</span><span>монтаж</span></div>
       </div>
     </div>
@@ -120,48 +232,10 @@
     <div class="service-card reveal-up">
       <div class="service-num">04</div>
       <div class="service-body">
-        <h3>Консультации по ИИ</h3>
-        <p>Разбор инструментов, помощь с промптами, погружение в тему для тех, кто хочет начать использовать ИИ в своей работе.</p>
+        <h3>Консультация по ИИ</h3>
+        <p>Разбор инструментов, помощь с промптами и погружение в тему для тех, кто хочет начать использовать генеративные нейросети.</p>
         <div class="service-tags"><span>обучение</span><span>промпты</span><span>инструменты</span></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- WORK / GALLERY -->
-<section class="work" id="work">
-  <div class="work-inner">
-    <div class="about-tag reveal-up">03 · работы</div>
-    <h2 class="section-title reveal-up">Избранные <span class="accent">проекты</span></h2>
-    <p class="work-note reveal-up">Здесь будут фото тату-работ и ИИ-визуалы/видео. Пока — заглушки, замени на свои материалы.</p>
-
-    <div class="work-grid">
-      <div class="work-item work-item-big reveal-up" data-tag="Тату">
-        <div class="work-placeholder ph1"></div>
-        <div class="work-caption"><span>Тату</span><h4>Название работы</h4></div>
-      </div>
-      <div class="work-item reveal-up" data-tag="ИИ · изображение">
-        <div class="work-placeholder ph2"></div>
-        <div class="work-caption"><span>ИИ · изображение</span><h4>Название проекта</h4></div>
-      </div>
-      <div class="work-item reveal-up" data-tag="ИИ · видео">
-        <div class="work-placeholder ph3"></div>
-        <div class="work-caption"><span>ИИ · видео</span><h4>Название проекта</h4></div>
-      </div>
-      <div class="work-item work-item-big reveal-up" data-tag="Тату">
-        <div class="work-placeholder ph4"></div>
-        <div class="work-caption"><span>Тату</span><h4>Название работы</h4></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- QUOTE / MARQUEE -->
-<section class="marquee-section">
-  <div class="marquee">
-    <div class="marquee-track">
-      <span>ЛИНИЯ&nbsp;•&nbsp;ФОРМА&nbsp;•&nbsp;АЛГОРИТМ&nbsp;•&nbsp;ТАТУ&nbsp;•&nbsp;ИИ&nbsp;•&nbsp;</span>
-      <span>ЛИНИЯ&nbsp;•&nbsp;ФОРМА&nbsp;•&nbsp;АЛГОРИТМ&nbsp;•&nbsp;ТАТУ&nbsp;•&nbsp;ИИ&nbsp;•&nbsp;</span>
     </div>
   </div>
 </section>
@@ -169,20 +243,20 @@
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="contact-inner">
-    <div class="about-tag reveal-up">04 · контакт</div>
-    <h2 class="section-title reveal-up">Готовы начать<br><span class="accent">проект?</span></h2>
-    <p class="contact-text reveal-up">Напишите пару слов о задумке — тату, ИИ-визуал или консультация — и я отвечу в ближайшее время.</p>
+    <div class="about-tag reveal-up">05 · контакт</div>
+    <h2 class="section-title reveal-up">Есть <span class="accent">идея?</span></h2>
+    <p class="contact-text reveal-up">Напиши пару слов о задумке — изображение, видео или консультация — и я отвечу в ближайшее время.</p>
 
-    <form class="contact-form reveal-up" id="contactForm">
+    <form class="contact-form" id="contactForm">
       <div class="form-row">
         <input type="text" placeholder="Имя" required>
         <input type="text" placeholder="Telegram / Email" required>
       </div>
       <select>
         <option>Тип услуги</option>
-        <option>Тату</option>
-        <option>ИИ-изображение</option>
-        <option>ИИ-видео</option>
+        <option>Изображение</option>
+        <option>Серия изображений</option>
+        <option>Видео / анимация</option>
         <option>Консультация</option>
       </select>
       <textarea placeholder="Расскажите о задумке..." rows="4"></textarea>
@@ -200,7 +274,7 @@
 </section>
 
 <footer class="footer">
-  <p>© <span id="year"></span> personnefinie. tattoo & ai.</p>
+  <p>© <span id="year"></span> personnefinie AI Lab. generative visuals.</p>
 </footer>
 
 <script src="script.js"></script>
