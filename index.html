@@ -58,27 +58,60 @@
     .hero {
       height: 100vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 0 40px;
-      background: linear-gradient(180deg, #0a0808 0%, #120d0d 100%);
+      justify-content: space-between;
+      padding: 0 60px;
+      background: #0a0808;
+      position: relative;
+      overflow: hidden;
     }
+
+    /* HERO BACKGROUND GRID */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(90deg, rgba(194, 42, 42, 0.08) 1px, transparent 1px),
+        linear-gradient(rgba(194, 42, 42, 0.08) 1px, transparent 1px);
+      background-size: 60px 60px;
+      background-position: 0 0;
+      opacity: 0.5;
+      z-index: 1;
+    }
+
+    /* HERO GRADIENT OVERLAY */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 80% 50%, rgba(194, 42, 42, 0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 20% 80%, rgba(194, 42, 42, 0.1) 0%, transparent 60%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      max-width: 500px;
+      z-index: 2;
+      position: relative;
+    }
+
     .hero h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3rem, 10vw, 7rem);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
       font-weight: 600;
       line-height: 1.1;
       margin-bottom: 20px;
     }
     .hero h1 em { color: #c22a2a; font-style: italic; }
+
     .hero p {
-      max-width: 600px;
-      font-size: 1.05rem;
+      font-size: 1rem;
       color: #a89a97;
-      margin: 20px auto 40px;
+      margin: 24px 0 40px;
+      line-height: 1.7;
     }
+
     .btn {
       display: inline-block;
       padding: 14px 36px;
@@ -93,6 +126,39 @@
       background: #c22a2a;
       color: #fff;
       transform: translateY(-2px);
+    }
+
+    /* HERO BG TEXT */
+    .hero-bg-text {
+      position: absolute;
+      right: -100px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(8rem, 20vw, 15rem);
+      font-weight: 600;
+      color: rgba(194, 42, 42, 0.08);
+      white-space: nowrap;
+      line-height: 1;
+      z-index: 0;
+      letter-spacing: -10px;
+    }
+
+    /* HERO IMAGE */
+    .hero-image {
+      width: 45%;
+      height: 100vh;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 1;
+      background: linear-gradient(135deg, rgba(194, 42, 42, 0.2) 0%, transparent 60%);
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
 
     /* SECTION */
@@ -368,6 +434,23 @@
       section { padding: 60px 20px; }
       .lightbox-controls { padding: 0 20px; }
       .lightbox-btn { width: 40px; height: 40px; font-size: 1.2rem; }
+      
+      .hero {
+        padding: 0 20px;
+        justify-content: center;
+      }
+      .hero-content {
+        max-width: 100%;
+        text-align: center;
+      }
+      .hero-image {
+        display: none;
+      }
+      .hero-bg-text {
+        right: -50px;
+        font-size: clamp(4rem, 15vw, 8rem);
+        letter-spacing: -5px;
+      }
     }
   </style>
 </head>
@@ -384,9 +467,15 @@
   </nav>
 
   <header class="hero">
-    <h1>personnefinie<br><em>AI Lab</em></h1>
-    <p>Исследую визуальные возможности нейросетей.<br>Изображения и эксперименты на грани технологии и искусства.</p>
-    <button class="btn" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">Смотреть работы</button>
+    <div class="hero-bg-text">personnefinie</div>
+    <div class="hero-image">
+      <img src="portrait-01.jpg" alt="personnefinie">
+    </div>
+    <div class="hero-content">
+      <h1>personnefinie<br><em>AI Lab</em></h1>
+      <p>Исследую визуальные возможности нейросетей. Изображения и эксперименты на грани технологии и искусства.</p>
+      <button class="btn" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">Смотреть работы</button>
+    </div>
   </header>
 
   <section id="about">
