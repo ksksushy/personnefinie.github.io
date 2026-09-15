@@ -1,751 +1,744 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>personnefinie AI Lab</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: #0a0808;
-      color: #f2e9e6;
-      font-family: 'Manrope', sans-serif;
-      line-height: 1.6;
-    }
-    a { color: inherit; text-decoration: none; }
-    button { cursor: pointer; border: none; background: none; color: inherit; font: inherit; }
-    img { max-width: 100%; display: block; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>personnefinie — AI Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 24px 40px;
-      z-index: 100;
-      background: rgba(10, 8, 8, 0.7);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    .logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-    .logo em { color: #c22a2a; font-style: italic; }
-    nav ul {
-      display: flex;
-      gap: 40px;
-      list-style: none;
-      font-size: 0.9rem;
-      letter-spacing: 0.5px;
-    }
-    nav a {
-      color: #a89a97;
-      transition: color 0.3s;
-    }
-    nav a:hover { color: #f2e9e6; }
+  :root {
+    --bg: #0a0a0b;
+    --bg-soft: #121214;
+    --line: rgba(255,255,255,0.08);
+    --text: #e8e6e3;
+    --muted: #8a8781;
+    --accent: #c8352f;
+    --serif: 'Cormorant Garamond', serif;
+    --sans: 'Inter', sans-serif;
+  }
 
-    /* HERO */
-    .hero {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 60px;
-      background: #0a0808;
-      position: relative;
-      overflow: hidden;
-    }
+  html { scroll-behavior: smooth; }
 
-    /* HERO BACKGROUND GRID */
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: 
-        linear-gradient(90deg, rgba(194, 42, 42, 0.08) 1px, transparent 1px),
-        linear-gradient(rgba(194, 42, 42, 0.08) 1px, transparent 1px);
-      background-size: 60px 60px;
-      background-position: 0 0;
-      opacity: 0.5;
-      z-index: 1;
-    }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
 
-    /* HERO GRADIENT OVERLAY */
-    .hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 80% 50%, rgba(194, 42, 42, 0.15) 0%, transparent 50%),
-                  radial-gradient(circle at 20% 80%, rgba(194, 42, 42, 0.1) 0%, transparent 60%);
-      z-index: 1;
-    }
+  /* ---------- NAV ---------- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: rgba(10,10,11,0.75);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
 
-    .hero-content {
-      max-width: 500px;
-      z-index: 2;
-      position: relative;
-    }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--accent); }
 
-    .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      font-weight: 600;
-      line-height: 1.1;
-      margin-bottom: 20px;
-    }
-    .hero h1 em { color: #c22a2a; font-style: italic; }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--text); }
 
-    .hero p {
-      font-size: 1rem;
-      color: #a89a97;
-      margin: 24px 0 40px;
-      line-height: 1.7;
-    }
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+  }
 
-    .btn {
-      display: inline-block;
-      padding: 14px 36px;
-      border: 1px solid #c22a2a;
-      border-radius: 999px;
-      color: #f2e9e6;
-      font-size: 0.95rem;
-      letter-spacing: 0.5px;
-      transition: all 0.3s;
-    }
-    .btn:hover {
-      background: #c22a2a;
-      color: #fff;
-      transform: translateY(-2px);
-    }
+  /* ---------- HERO ---------- */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 40px 60px;
+    position: relative;
+  }
 
-    /* HERO BG TEXT */
-    .hero-bg-text {
-      position: absolute;
-      right: -100px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(8rem, 20vw, 15rem);
-      font-weight: 600;
-      color: rgba(194, 42, 42, 0.08);
-      white-space: nowrap;
-      line-height: 1;
-      z-index: 0;
-      letter-spacing: -10px;
-    }
+  .hero-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
 
-    /* SECTION */
-    section {
-      padding: 100px 40px;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    .tag {
-      font-size: 0.75rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #c22a2a;
-      margin-bottom: 16px;
-    }
-    h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 600;
-      line-height: 1.2;
-      margin-bottom: 60px;
-    }
-    h2 em { color: #c22a2a; font-style: italic; }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 11vw, 9rem);
+    line-height: 0.95;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
 
-    /* ABOUT */
-    #about { background: #0a0808; }
-    .about-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
-    }
-    .about-card {
-      padding: 32px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.02);
-    }
-    .about-card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 12px;
-    }
-    .about-card p {
-      color: #a89a97;
-      font-size: 0.95rem;
-    }
+  .hero-desc {
+    max-width: 460px;
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin-bottom: 40px;
+  }
 
-    /* GALLERY */
-    #gallery { background: #120d0d; }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-    }
-    .gallery-card {
-      position: relative;
-      aspect-ratio: 3/4;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      cursor: pointer;
-      transition: all 0.4s ease;
-    }
-    .gallery-card:hover {
-      transform: translateY(-8px);
-      border-color: #c22a2a;
-    }
-    .gallery-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    .gallery-card:hover img {
-      transform: scale(1.05);
-    }
-    .gallery-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.9) 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 28px;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .gallery-card:hover .gallery-overlay {
-      opacity: 1;
-    }
-    .gallery-overlay h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      margin-bottom: 8px;
-    }
-    .gallery-overlay .count {
-      font-size: 0.75rem;
-      color: #c22a2a;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border: 1px solid var(--line);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    cursor: pointer;
+    background: transparent;
+  }
+  .btn:hover {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #fff;
+  }
 
-    /* LIGHTBOX */
-    .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.95);
-      z-index: 1000;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px;
-    }
-    .lightbox.active {
-      display: flex;
-    }
-    .lightbox-close {
-      position: absolute;
-      top: 30px;
-      right: 30px;
-      width: 40px;
-      height: 40px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      transition: all 0.3s;
-      z-index: 10;
-    }
-    .lightbox-close:hover {
-      border-color: #c22a2a;
-      background: #c22a2a;
-    }
-    .lightbox-img {
-      max-width: 90vw;
-      max-height: 80vh;
-      border-radius: 8px;
-      margin-bottom: 28px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .lightbox-video {
-      max-width: 90vw;
-      max-height: 80vh;
-      border-radius: 8px;
-      margin-bottom: 28px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      display: none;
-    }
-    .lightbox-info {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-    .lightbox-cat {
-      font-size: 0.75rem;
-      color: #c22a2a;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-    .lightbox-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      margin: 8px 0;
-    }
-    .lightbox-index {
-      font-size: 0.85rem;
-      color: #a89a97;
-    }
-    .lightbox-controls {
-      position: fixed;
-      top: 50%;
-      left: 0;
-      right: 0;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 40px;
-      transform: translateY(-50%);
-      pointer-events: none;
-    }
-    .lightbox-btn {
-      width: 50px;
-      height: 50px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      transition: all 0.3s;
-      pointer-events: all;
-    }
-    .lightbox-btn:hover {
-      border-color: #c22a2a;
-      background: #c22a2a;
-    }
+  @media (max-width: 768px) {
+    .hero { padding: 100px 20px 40px; }
+  }
 
-    /* SERVICES */
-    #services { background: #0a0808; }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-    }
-    .service-card {
-      padding: 32px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-    }
-    .service-card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 12px;
-    }
-    .service-card p {
-      color: #a89a97;
-      font-size: 0.95rem;
-    }
+  /* ---------- SECTIONS ---------- */
+  section { padding: 100px 40px; }
+  @media (max-width: 768px) { section { padding: 64px 20px; } }
 
-    /* CONTACT */
-    #contact { background: #120d0d; }
-    .contact-wrapper {
-      max-width: 600px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .contact-wrapper p {
-      color: #a89a97;
-      margin-bottom: 40px;
-      font-size: 1rem;
-    }
-    .form-group {
-      margin-bottom: 20px;
-      text-align: left;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 12px 16px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      color: #f2e9e6;
-      font-family: inherit;
-      font-size: 0.95rem;
-      transition: border-color 0.3s;
-    }
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: #c22a2a;
-    }
-    textarea { resize: vertical; min-height: 120px; }
-    .form-submit {
-      margin-top: 20px;
-      width: 100%;
-      padding: 14px;
-      border: 1px solid #c22a2a;
-      border-radius: 8px;
-      background: transparent;
-      color: #f2e9e6;
-      font-size: 0.95rem;
-      letter-spacing: 0.5px;
-      transition: all 0.3s;
-    }
-    .form-submit:hover {
-      background: #c22a2a;
-      color: #fff;
-    }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 48px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 20px;
+  }
 
-    /* FOOTER */
-    footer {
-      padding: 40px;
-      text-align: center;
-      color: #a89a97;
-      font-size: 0.85rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    .social-links {
-      margin-bottom: 16px;
-    }
-    .social-links a {
-      display: inline-block;
-      margin: 0 12px;
-      color: #a89a97;
-      transition: color 0.3s;
-    }
-    .social-links a:hover {
-      color: #c22a2a;
-    }
+  .section-num {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    font-family: var(--sans);
+  }
 
-    /* MOBILE */
-    @media (max-width: 768px) {
-      nav { padding: 16px 20px; }
-      nav ul { gap: 20px; font-size: 0.8rem; }
-      section { padding: 60px 20px; }
-      .lightbox-controls { padding: 0 20px; }
-      .lightbox-btn { width: 40px; height: 40px; font-size: 1.2rem; }
-      
-      .hero {
-        padding: 0 20px;
-        justify-content: center;
-      }
-      .hero-content {
-        max-width: 100%;
-        text-align: center;
-      }
-      .hero-bg-text {
-        right: -50px;
-        font-size: clamp(4rem, 15vw, 8rem);
-        letter-spacing: -5px;
-      }
-    }
-  </style>
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 300;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 40px;
+  }
+
+  .about-item h3 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+  .about-item p {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  /* ---------- GALLERY ---------- */
+  .gallery-group { margin-bottom: 56px; }
+
+  .group-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .group-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+  }
+
+  .gallery-card {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    cursor: pointer;
+    background: var(--bg-soft);
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .gallery-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(200,53,47,0.5);
+  }
+
+  .gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s;
+  }
+  .gallery-card:hover img { transform: scale(1.05); }
+
+  .card-badge {
+    position: absolute;
+    top: 8px; right: 8px;
+    background: rgba(10,10,11,0.75);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,10,11,0.92) 0%, transparent 55%);
+    display: flex;
+    align-items: flex-end;
+    padding: 14px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .gallery-card:hover .gallery-overlay { opacity: 1; }
+
+  .gallery-overlay h3 {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 400;
+  }
+
+  /* magazine cards show multiple pages */
+  .gallery-card .pages-count {
+    position: absolute;
+    bottom: 8px; right: 8px;
+    background: rgba(10,10,11,0.75);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    color: var(--text);
+  }
+
+  /* ---------- SERVICES ---------- */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .service-card {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 28px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .service-card:hover {
+    border-color: rgba(200,53,47,0.4);
+    background: var(--bg-soft);
+  }
+  .service-card h3 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+  .service-card p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+  }
+  .service-price {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-wrap {
+    max-width: 600px;
+  }
+  .contact-title {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+  .contact-title em { font-style: italic; color: var(--accent); }
+  .contact-text { color: var(--muted); margin-bottom: 32px; }
+
+  form { display: flex; flex-direction: column; gap: 14px; max-width: 420px; }
+  input, textarea {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 14px 16px;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  input:focus, textarea:focus { border-color: var(--accent); }
+  textarea { min-height: 110px; resize: vertical; }
+
+  footer {
+    padding: 40px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--muted); text-decoration: none; transition: color 0.3s; }
+  footer a:hover { color: var(--accent); }
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(5,5,6,0.96);
+    backdrop-filter: blur(10px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 40px;
+  }
+  .lightbox.open { display: flex; }
+
+  .lb-content {
+    max-width: 92vw;
+    max-height: 82vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .lb-content img,
+  .lb-content video {
+    max-width: 92vw;
+    max-height: 82vh;
+    border-radius: 8px;
+    display: block;
+    background: #000;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  }
+
+  .lb-close {
+    position: fixed;
+    top: 24px; right: 28px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--text);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+    z-index: 1010;
+  }
+  .lb-close:hover { background: var(--accent); }
+
+  .lb-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--text);
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+    z-index: 1010;
+  }
+  .lb-nav:hover { background: var(--accent); }
+  .lb-prev { left: 24px; }
+  .lb-next { right: 24px; }
+
+  .lb-caption {
+    margin-top: 18px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .lb-prev { left: 10px; }
+    .lb-next { right: 10px; }
+    .lb-close { top: 14px; right: 14px; }
+    .likely { }
+  }
+</style>
 </head>
 <body>
 
-  <nav>
-    <div class="logo">personnefinie <em>AI Lab</em></div>
-    <ul>
-      <li><a href="#about">о проекте</a></li>
-      <li><a href="#gallery">работы</a></li>
-      <li><a href="#services">услуги</a></li>
-      <li><a href="#contact">контакт</a></li>
-    </ul>
-  </nav>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">personne<span>finie</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">о проекте</a></li>
+    <li><a href="#works">работы</a></li>
+    <li><a href="#services">услуги</a></li>
+    <li><a href="#contact">контакт</a></li>
+  </ul>
+</nav>
 
-  <header class="hero">
-    <div class="hero-bg-text">personnefinie</div>
-    <div class="hero-content">
-      <h1>personnefinie<br><em>AI Lab</em></h1>
-      <p>Исследую визуальные возможности нейросетей. Изображения и эксперименты на грани технологии и искусства.</p>
-      <button class="btn" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">Смотреть работы</button>
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-label">personnefinie · AI Lab</div>
+  <h1 class="hero-title">Исследую<br>визуальные<br><em>возможности</em><br>нейросетей</h1>
+  <p class="hero-desc">Изображения и эксперименты на грани технологии и искусства.</p>
+  <a href="#works" class="btn">Смотреть работы</a>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-head">
+    <span class="section-num">01 · о проекте</span>
+    <h2 class="section-title">Технология как холст</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-item">
+      <h3>Инженерное мышление</h3>
+      <p>Опыт в точных построениях помогает выстраивать композицию в генеративных работах — не просто красиво, а осмысленно.</p>
     </div>
-  </header>
-
-  <section id="about">
-    <div class="tag">01 · о проекте</div>
-    <h2>Технология как <em>холст</em></h2>
-    <div class="about-grid">
-      <div class="about-card">
-        <h3>Инженерное мышление</h3>
-        <p>Опыт в точных построениях помогает выстраивать композицию в генеративных работах — не просто красиво, а осмысленно.</p>
-      </div>
-      <div class="about-card">
-        <h3>Художественный взгляд</h3>
-        <p>Годы в тату-искусстве развили чувство линии, баланса и стиля — это переносится в работу с промптами и генерацией.</p>
-      </div>
-      <div class="about-card">
-        <h3>ИИ-исследование</h3>
-        <p>Изучаю генеративные модели: Midjourney, Stable Diffusion — превращаю технологию в авторский визуальный язык.</p>
-      </div>
+    <div class="about-item">
+      <h3>Художественный взгляд</h3>
+      <p>Годы в тату-искусстве развили чувство линии, баланса и стиля — это переносится в работу с промптами и генерацией.</p>
     </div>
-  </section>
-
-  <section id="gallery">
-    <div class="tag">02 · работы</div>
-    <h2>Каталог <em>работ</em></h2>
-    <div class="gallery-grid" id="galleryGrid"></div>
-  </section>
-
-  <section id="services">
-    <div class="tag">03 · услуги</div>
-    <h2>Что можно <em>заказать</em></h2>
-    <div class="services-grid" id="servicesGrid"></div>
-  </section>
-
-  <section id="contact">
-    <div class="tag">04 · контакт</div>
-    <h2>Есть <em>идея?</em></h2>
-    <div class="contact-wrapper">
-      <p>Напиши пару слов о задумке — отвечу в ближайшее время.</p>
-      <form onsubmit="handleForm(event)">
-        <div class="form-group">
-          <input type="text" placeholder="Имя" required>
-        </div>
-        <div class="form-group">
-          <input type="text" placeholder="Telegram / Email" required>
-        </div>
-        <div class="form-group">
-          <textarea placeholder="Расскажи о задумке..." required></textarea>
-        </div>
-        <button type="submit" class="form-submit">Отправить</button>
-      </form>
-    </div>
-  </section>
-
-  <footer>
-    <div class="social-links">
-      <a href="https://instagram.com/personnefinie" target="_blank" rel="noopener noreferrer">Instagram</a>
-    </div>
-    © 2026 personnefinie AI Lab. generative visuals.
-  </footer>
-
-  <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-    <div>
-      <img class="lightbox-img" id="lightboxImg" src="" alt="">
-      <video class="lightbox-video" id="lightboxVideo" controls></video>
-      <div class="lightbox-info">
-        <div class="lightbox-cat" id="lightboxCat"></div>
-        <div class="lightbox-title" id="lightboxTitle"></div>
-        <div class="lightbox-index" id="lightboxIndex"></div>
-      </div>
-    </div>
-    <div class="lightbox-controls">
-      <button class="lightbox-btn" onclick="prevImage()">‹</button>
-      <button class="lightbox-btn" onclick="nextImage()">›</button>
+    <div class="about-item">
+      <h3>ИИ-исследование</h3>
+      <p>Изучаю генеративные модели: Midjourney, Stable Diffusion — превращаю технологию в авторский визуальный язык.</p>
     </div>
   </div>
+</section>
 
-  <script>
-    const galleries = {
-      portrait: {
-        name: 'Портреты',
-        thumb: 'portrait-01.jpg',
-        images: [
-          { src: 'portrait-01.jpg', title: 'Портрет 3/4' },
-          { src: 'portrait-02.jpg', title: 'Профиль' },
-          { src: 'portrait-03.jpg', title: 'Улыбка' },
-          { src: 'portrait-04.jpg', title: 'Профиль 3/4' },
-          { src: 'portrait-05.jpg', title: 'В полный рост' },
-          { src: 'portrait-06.jpg', title: 'Студийный снимок' },
-          { src: 'portrait-07.jpg', title: 'Крупный план' },
-          { src: 'portrait-08.jpg', title: 'Динамичный портрет' }
-        ]
-      },
-      characters: {
-        name: 'Персонажи',
-        thumb: 'concept-maid.jpg',
-        images: [
-          { src: 'concept-maid.jpg', title: 'Готическая мейд' },
-          { src: 'concept-spartan.jpg', title: 'Спартанец (лица)' },
-          { src: 'concept-spartan-2.jpg', title: 'Спартанец (полный рост)' },
-          { src: 'concept-hoodie.jpg', title: 'Стрит-стайл' },
-          { src: 'concept-cyberpunk.jpg', title: 'Киберпанк' },
-          { src: 'concept-fantasy.jpg', title: 'Фэнтези воин' },
-          { src: 'concept-minimal.jpg', title: 'Минимализм' },
-          { src: 'concept-dramatic.jpg', title: 'Драматичный образ' }
-        ]
-      },
-      portraits_shoot: {
-        name: 'Портретная съёмка',
-        thumb: 'product-02.jpg',
-        images: [
-          { src: 'product-02.jpg', title: 'В полный рост' },
-          { src: 'product-01.jpg', title: 'Крупный план' },
-          { src: 'product-03.jpg', title: 'Боковой ракурс' },
-          { src: 'product-04.jpg', title: 'На природе' },
-          { src: 'product-05.jpg', title: 'В студии' },
-          { src: 'product-06.jpg', title: 'Портрет в движении' }
-        ]
-      },
-      videos: {
-        name: 'AI-видео проекты',
-        thumb: 'video-01.jpg',
-        images: [
-          { src: 'video-01.mp4', thumb: 'video-01.jpg', title: 'ИИ-генерация видео 1', isVideo: true },
-          { src: 'video-02.mp4', thumb: 'video-02.jpg', title: 'ИИ-генерация видео 2', isVideo: true },
-          { src: 'video-03.mp4', thumb: 'video-03.jpg', title: 'ИИ-генерация видео 3', isVideo: true },
-          { src: 'video-04.mp4', thumb: 'video-04.jpg', title: 'ИИ-генерация видео 4', isVideo: true },
-          { src: 'video-05.mp4', thumb: 'video-05.jpg', title: 'ИИ-генерация видео 5', isVideo: true }
-        ]
-      },
-      magazines: {
-        name: 'Журналы',
-        thumb: 'magazine-01-cover.jpg',
-        images: [
-          { src: 'magazine-01-cover.jpg', title: 'Журнал 1: Обложка' },
-          { src: 'magazine-01-page-01.jpg', title: 'Журнал 1: Страница 1' },
-          { src: 'magazine-01-page-02.jpg', title: 'Журнал 1: Страница 2' },
-          { src: 'magazine-02-cover.jpg', title: 'Журнал 2: Обложка' },
-          { src: 'magazine-02-page-01.jpg', title: 'Журнал 2: Страница 1' },
-          { src: 'magazine-02-page-02.jpg', title: 'Журнал 2: Страница 2' }
-        ]
-      }
-    };
+<!-- WORKS -->
+<section id="works">
+  <div class="section-head">
+    <span class="section-num">02 · работы</span>
+    <h2 class="section-title">Каталог работ</h2>
+  </div>
 
-    const services = [
-      {
-        title: 'Генерация портрета',
-        description: 'Один готовый портрет под запрос в вашем стиле — фотореалистичный или стилизованный.'
-      },
-      {
-        title: 'Серия из 3–5 портретов',
-        description: 'Набор портретов в едином визуальном стиле для портфолио или социальных сетей.'
-      },
-      {
-        title: 'Персонаж для проекта',
-        description: 'Разработка уникального персонажа с несколькими вариантами образов и поз.'
-      },
-      {
-        title: 'Концепт-арт сессия',
-        description: 'Исследование визуального направления: 5–10 вариантов дизайна для выбора.'
-      },
-      {
-        title: 'AI-видео портрет',
-        description: 'Оживление порт��ета или короткое видео с motion-эффектами (5–15 секунд).'
-      },
-      {
-        title: 'Апскейл и ретушь',
-        description: 'Увеличение изображения в качестве + профессиональная обработка сгенерированного контента.'
-      }
-    ];
+  <!-- VIDEO -->
+  <div class="gallery-group">
+    <div class="group-label">AI-видео</div>
+    <div class="gallery-grid" id="grid-video"></div>
+  </div>
 
-    let currentGallery = null;
-    let currentIndex = 0;
+  <!-- PORTRAITS -->
+  <div class="gallery-group">
+    <div class="group-label">Портреты</div>
+    <div class="gallery-grid" id="grid-portrait"></div>
+  </div>
 
-    function initGallery() {
-      const grid = document.getElementById('galleryGrid');
-      grid.innerHTML = '';
-      Object.keys(galleries).forEach(key => {
-        const g = galleries[key];
-        const card = document.createElement('div');
-        card.className = 'gallery-card';
-        card.onclick = () => openGallery(key);
-        card.innerHTML = `
-          <img src="${g.thumb}" alt="${g.name}">
-          <div class="gallery-overlay">
-            <div class="count">${g.images.length} ${g.images.length === 1 ? 'работа' : 'работ'}</div>
-            <h3>${g.name}</h3>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
+  <!-- CONCEPTS -->
+  <div class="gallery-group">
+    <div class="group-label">Персонажи</div>
+    <div class="gallery-grid" id="grid-concept"></div>
+  </div>
+
+  <!-- PRODUCT -->
+  <div class="gallery-group">
+    <div class="group-label">Портретная съёмка</div>
+    <div class="gallery-grid" id="grid-product"></div>
+  </div>
+
+  <!-- MAGAZINES -->
+  <div class="gallery-group">
+    <div class="group-label">Журналы</div>
+    <div class="gallery-grid" id="grid-magazine"></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-head">
+    <span class="section-num">03 · услуги</span>
+    <h2 class="section-title">Что можно заказать</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <h3>Портрет</h3>
+      <p>Индивидуальный ИИ-портрет по твоим референсам и характеру.</p>
+      <div class="service-price">от 2 000 ₽</div>
+    </div>
+    <div class="service-card">
+      <h3>Персонаж</h3>
+      <p>Концепт-арт персонажа: от идеи до готового визуального образа.</p>
+      <div class="service-price">от 3 000 ₽</div>
+    </div>
+    <div class="service-card">
+      <h3>Журнал</h3>
+      <p>Серия разворотов в стиле глянцевого издания — обложка и страницы.</p>
+      <div class="service-price">от 5 000 ₽</div>
+    </div>
+    <div class="service-card">
+      <h3>Видео</h3>
+      <p>Короткий динамичный ИИ-ролик для соцсетей или презентации.</p>
+      <div class="service-price">от 6 000 ₽</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-head">
+    <span class="section-num">04 · контакт</span>
+    <h2 class="section-title">Есть идея?</h2>
+  </div>
+  <div class="contact-wrap">
+    <p class="contact-text">Напиши пару слов о задумке — отвечу в ближайшее время.</p>
+    <form onsubmit="event.preventDefault(); this.reset(); alert('Спасибо! Сообщение отправлено.');">
+      <input type="text" placeholder="Имя" required>
+      <input type="email" placeholder="Email" required>
+      <textarea placeholder="О задумке..." required></textarea>
+      <button type="submit" class="btn">Отправить</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 personnefinie AI Lab. generative visuals.</span>
+  <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <button class="lb-nav lb-prev" onclick="navigate(-1)">‹</button>
+  <button class="lb-nav lb-next" onclick="navigate(1)">›</button>
+  <div class="lb-content" id="lb-content"></div>
+  <div class="lb-caption" id="lb-caption"></div>
+</div>
+
+<script>
+// ---------- ДАННЫЕ ГАЛЕРЕИ (только реальные файлы) ----------
+const WORKS = {
+  video: [
+    { type: 'video', src: 'video-01.mp4', poster: 'video-01.jpg', title: 'AI-видео · экспериментальный ролик' }
+  ],
+  portrait: [
+    { type: 'image', src: 'portrait-01.jpg', title: 'Портрет 01' },
+    { type: 'image', src: 'portrait-02.jpg', title: 'Портрет 02' },
+    { type: 'image', src: 'portrait-03.jpg', title: 'Портрет 03' },
+    { type: 'image', src: 'portrait-04.jpg', title: 'Портрет 04' }
+  ],
+  concept: [
+    { type: 'image', src: 'concept-hoodie.jpg', title: 'Персонаж · Hoodie' },
+    { type: 'image', src: 'concept-maid.jpg', title: 'Персонаж · Maid' },
+    { type: 'image', src: 'concept-spartan.jpg', title: 'Персонаж · Spartan' },
+    { type: 'image', src: 'concept-spartan-2.jpg', title: 'Персонаж · Spartan II' }
+  ],
+  product: [
+    { type: 'image', src: 'product-01.jpg', title: 'Портретная съёмка 01' },
+    { type: 'image', src: 'product-02.jpg', title: 'Портретная съёмка 02' }
+  ],
+  magazine: [
+    {
+      type: 'magazine',
+      title: 'Журнал 01',
+      pages: ['magazine-01-cover.jpg', 'magazine-01-page-01.jpg', 'magazine-01-page-02.jpg']
+    },
+    {
+      type: 'magazine',
+      title: 'Журнал 02',
+      pages: ['magazine-02-cover.jpg', 'magazine-02-page-01.jpg', 'magazine-02-page-02.jpg']
+    }
+  ]
+};
+
+// ---------- ПОСТРОЕНИЕ ГАЛЕРЕИ ----------
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function buildGallery(containerId, items) {
+  const grid = document.getElementById(containerId);
+  if (!grid) return;
+
+  items.forEach((item, idx) => {
+    const card = document.createElement('div');
+    card.className = 'gallery-card';
+
+    let coverSrc = item.type === 'magazine' ? item.pages[0] : (item.poster || item.src);
+
+    if (item.type === 'video') {
+      card.innerHTML =
+        '<img src="' + esc(coverSrc) + '" alt="' + esc(item.title) + '" loading="lazy">' +
+        '<span class="card-badge">▶ видео</span>' +
+        '<div class="gallery-overlay"><h3>' + esc(item.title) + '</h3></div>';
+      card.onclick = () => openLightbox('video', [item], 0);
+
+    } else if (item.type === 'magazine') {
+      card.innerHTML =
+        '<img src="' + esc(coverSrc) + '" alt="' + esc(item.title) + '" loading="lazy">' +
+        '<span class="card-badge">журнал</span>' +
+        '<span class="pages-count">' + item.pages.length + ' стр.</span>' +
+        '<div class="gallery-overlay"><h3>' + esc(item.title) + '</h3></div>';
+      card.onclick = () => openLightbox('magazine', item.pages.map(p => ({type:'image', src:p, title:item.title})), 0);
+
+    } else {
+      card.innerHTML =
+        '<img src="' + esc(coverSrc) + '" alt="' + esc(item.title) + '" loading="lazy">' +
+        '<div class="gallery-overlay"><h3>' + esc(item.title) + '</h3></div>';
+      card.onclick = () => openLightbox('image', items, idx);
     }
 
-    function openGallery(key) {
-      currentGallery = key;
-      currentIndex = 0;
-      showImage();
-      document.getElementById('lightbox').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
+    grid.appendChild(card);
+  });
+}
 
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('active');
-      document.body.style.overflow = '';
-      currentGallery = null;
-    }
+buildGallery('grid-video', WORKS.video);
+buildGallery('grid-portrait', WORKS.portrait);
+buildGallery('grid-concept', WORKS.concept);
+buildGallery('grid-product', WORKS.product);
+buildGallery('grid-magazine', WORKS.magazine);
 
-    function showImage() {
-      if (!currentGallery) return;
-      const g = galleries[currentGallery];
-      const img = g.images[currentIndex];
-      
-      if (img.isVideo) {
-        document.getElementById('lightboxImg').style.display = 'none';
-        document.getElementById('lightboxVideo').style.display = 'block';
-        document.getElementById('lightboxVideo').src = img.src;
-      } else {
-        document.getElementById('lightboxVideo').style.display = 'none';
-        document.getElementById('lightboxImg').style.display = 'block';
-        document.getElementById('lightboxImg').src = img.src;
-      }
-      
-      document.getElementById('lightboxTitle').textContent = img.title;
-      document.getElementById('lightboxCat').textContent = g.name;
-      document.getElementById('lightboxIndex').textContent = (currentIndex + 1) + ' / ' + g.images.length;
-    }
+// ---------- LIGHTBOX ----------
+let currentItems = [];
+let currentIndex = 0;
+let currentKind = 'image';
 
-    function nextImage() {
-      if (!currentGallery) return;
-      currentIndex = (currentIndex + 1) % galleries[currentGallery].images.length;
-      showImage();
-    }
+function openLightbox(kind, items, index) {
+  currentKind = kind;
+  currentItems = items;
+  currentIndex = index;
+  renderLightbox();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
 
-    function prevImage() {
-      if (!currentGallery) return;
-      currentIndex = (currentIndex - 1 + galleries[currentGallery].images.length) % galleries[currentGallery].images.length;
-      showImage();
-    }
+function closeLightbox() {
+  const lb = document.getElementById('lightbox');
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+  const v = lb.querySelector('video');
+  if (v) { v.pause(); v.removeAttribute('src'); v.load(); }
+  document.getElementById('lb-content').innerHTML = '';
+}
 
-    function renderServices() {
-      const servicesGrid = document.getElementById('servicesGrid');
-      servicesGrid.innerHTML = '';
-      services.forEach(service => {
-        const card = document.createElement('div');
-        card.className = 'service-card';
-        card.innerHTML = `<h3>${service.title}</h3><p>${service.description}</p>`;
-        servicesGrid.appendChild(card);
-      });
-    }
+function renderLightbox() {
+  const content = document.getElementById('lb-content');
+  const caption = document.getElementById('lb-caption');
+  const item = currentItems[currentIndex];
+  content.innerHTML = '';
 
-    function handleForm(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('button');
-      btn.textContent = 'Отправлено ✓';
-      btn.disabled = true;
-      setTimeout(() => {
-        btn.textContent = 'Отправить';
-        btn.disabled = false;
-        e.target.reset();
-      }, 2500);
-    }
+  if (item.type === 'video') {
+    const v = document.createElement('video');
+    v.src = item.src;
+    if (item.poster) v.poster = item.poster;
+    v.controls = true;
+    v.autoplay = true;
+    v.loop = true;
+    v.playsInline = true;
+    v.setAttribute('playsinline', '');
+    content.appendChild(v);
+    v.play().catch(() => {});
+    caption.textContent = item.title || '';
+  } else {
+    const img = document.createElement('img');
+    img.src = item.src;
+    img.alt = item.title || '';
+    content.appendChild(img);
+    let cap = item.title || '';
+    if (currentItems.length > 1) cap += '  ·  ' + (currentIndex + 1) + ' / ' + currentItems.length;
+    caption.textContent = cap;
+  }
 
-    document.addEventListener('keydown', (e) => {
-      if (!currentGallery) return;
-      if (e.key === 'ArrowRight') nextImage();
-      if (e.key === 'ArrowLeft') prevImage();
-      if (e.key === 'Escape') closeLightbox();
-    });
+  const multi = currentItems.length > 1;
+  document.querySelector('.lb-prev').style.display = multi ? 'flex' : 'none';
+  document.querySelector('.lb-next').style.display = multi ? 'flex' : 'none';
+}
 
-    initGallery();
-    renderServices();
-  </script>
+function navigate(dir) {
+  if (currentItems.length <= 1) return;
+  currentIndex = (currentIndex + dir + currentItems.length) % currentItems.length;
+  renderLightbox();
+}
 
+// закрытие
+document.getElementById('lightbox').addEventListener('click', (e) => {
+  if (e.target.id === 'lightbox') closeLightbox();
+});
+
+// клавиатура
+document.addEventListener('keydown', (e) => {
+  const lb = document.getElementById('lightbox');
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowRight') navigate(1);
+  if (e.key === 'ArrowLeft') navigate(-1);
+});
+</script>
 </body>
 </html>
