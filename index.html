@@ -144,23 +144,6 @@
       letter-spacing: -10px;
     }
 
-    /* HERO IMAGE */
-    .hero-image {
-      width: 45%;
-      height: 100vh;
-      position: absolute;
-      right: 0;
-      top: 0;
-      z-index: 1;
-      background: linear-gradient(135deg, rgba(194, 42, 42, 0.2) 0%, transparent 60%);
-    }
-    .hero-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
     /* SECTION */
     section {
       padding: 100px 40px;
@@ -301,6 +284,14 @@
       margin-bottom: 28px;
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
+    .lightbox-video {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 8px;
+      margin-bottom: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: none;
+    }
     .lightbox-info {
       text-align: center;
       margin-bottom: 24px;
@@ -426,6 +417,18 @@
       font-size: 0.85rem;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
+    .social-links {
+      margin-bottom: 16px;
+    }
+    .social-links a {
+      display: inline-block;
+      margin: 0 12px;
+      color: #a89a97;
+      transition: color 0.3s;
+    }
+    .social-links a:hover {
+      color: #c22a2a;
+    }
 
     /* MOBILE */
     @media (max-width: 768px) {
@@ -442,9 +445,6 @@
       .hero-content {
         max-width: 100%;
         text-align: center;
-      }
-      .hero-image {
-        display: none;
       }
       .hero-bg-text {
         right: -50px;
@@ -468,9 +468,6 @@
 
   <header class="hero">
     <div class="hero-bg-text">personnefinie</div>
-    <div class="hero-image">
-      <img src="portrait-01.jpg" alt="personnefinie">
-    </div>
     <div class="hero-content">
       <h1>personnefinie<br><em>AI Lab</em></h1>
       <p>Исследую визуальные возможности нейросетей. Изображения и эксперименты на грани технологии и искусства.</p>
@@ -503,20 +500,8 @@
     <div class="gallery-grid" id="galleryGrid"></div>
   </section>
 
-  <section id="gallery-videos">
-    <div class="tag">03 · видео</div>
-    <h2>AI-видео <em>проекты</em></h2>
-    <div class="gallery-grid" id="videosGrid"></div>
-  </section>
-
-  <section id="gallery-magazines">
-    <div class="tag">04 · журналы</div>
-    <h2><em>Журналы</em> и публикации</h2>
-    <div class="gallery-grid" id="magazinesGrid"></div>
-  </section>
-
   <section id="services">
-    <div class="tag">05 · услуги</div>
+    <div class="tag">03 · услуги</div>
     <h2>Что можно <em>заказать</em></h2>
     <div class="services-grid" id="servicesGrid"></div>
   </section>
@@ -541,13 +526,19 @@
     </div>
   </section>
 
-  <footer>© 2026 personnefinie AI Lab. generative visuals.</footer>
+  <footer>
+    <div class="social-links">
+      <a href="https://instagram.com/personnefinie" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+    © 2026 personnefinie AI Lab. generative visuals.
+  </footer>
 
   <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" onclick="closeLightbox()">✕</button>
     <div>
       <img class="lightbox-img" id="lightboxImg" src="" alt="">
+      <video class="lightbox-video" id="lightboxVideo" controls></video>
       <div class="lightbox-info">
         <div class="lightbox-cat" id="lightboxCat"></div>
         <div class="lightbox-title" id="lightboxTitle"></div>
@@ -601,6 +592,29 @@
           { src: 'product-05.jpg', title: 'В студии' },
           { src: 'product-06.jpg', title: 'Портрет в движении' }
         ]
+      },
+      videos: {
+        name: 'AI-видео проекты',
+        thumb: 'video-01.jpg',
+        images: [
+          { src: 'video-01.mp4', thumb: 'video-01.jpg', title: 'ИИ-генерация видео 1', isVideo: true },
+          { src: 'video-02.mp4', thumb: 'video-02.jpg', title: 'ИИ-генерация видео 2', isVideo: true },
+          { src: 'video-03.mp4', thumb: 'video-03.jpg', title: 'ИИ-генерация видео 3', isVideo: true },
+          { src: 'video-04.mp4', thumb: 'video-04.jpg', title: 'ИИ-генерация видео 4', isVideo: true },
+          { src: 'video-05.mp4', thumb: 'video-05.jpg', title: 'ИИ-генерация видео 5', isVideo: true }
+        ]
+      },
+      magazines: {
+        name: 'Журналы',
+        thumb: 'magazine-01-cover.jpg',
+        images: [
+          { src: 'magazine-01-cover.jpg', title: 'Журнал 1: Обложка' },
+          { src: 'magazine-01-page-01.jpg', title: 'Журнал 1: Страница 1' },
+          { src: 'magazine-01-page-02.jpg', title: 'Журнал 1: Страница 2' },
+          { src: 'magazine-02-cover.jpg', title: 'Журнал 2: Обложка' },
+          { src: 'magazine-02-page-01.jpg', title: 'Журнал 2: Страница 1' },
+          { src: 'magazine-02-page-02.jpg', title: 'Журнал 2: Страница 2' }
+        ]
       }
     };
 
@@ -623,7 +637,7 @@
       },
       {
         title: 'AI-видео портрет',
-        description: 'Оживление портрета или короткое видео с motion-эффектами (5–15 секунд).'
+        description: 'Оживление порт��ета или короткое видео с motion-эффектами (5–15 секунд).'
       },
       {
         title: 'Апскейл и ретушь',
@@ -671,7 +685,17 @@
       if (!currentGallery) return;
       const g = galleries[currentGallery];
       const img = g.images[currentIndex];
-      document.getElementById('lightboxImg').src = img.src;
+      
+      if (img.isVideo) {
+        document.getElementById('lightboxImg').style.display = 'none';
+        document.getElementById('lightboxVideo').style.display = 'block';
+        document.getElementById('lightboxVideo').src = img.src;
+      } else {
+        document.getElementById('lightboxVideo').style.display = 'none';
+        document.getElementById('lightboxImg').style.display = 'block';
+        document.getElementById('lightboxImg').src = img.src;
+      }
+      
       document.getElementById('lightboxTitle').textContent = img.title;
       document.getElementById('lightboxCat').textContent = g.name;
       document.getElementById('lightboxIndex').textContent = (currentIndex + 1) + ' / ' + g.images.length;
@@ -713,29 +737,13 @@
     }
 
     document.addEventListener('keydown', (e) => {
-      if (!currentGallery && !videoIndex && !magazineIndex) return;
-      if (e.key === 'ArrowRight') nextVideoOrMag();
-      if (e.key === 'ArrowLeft') prevVideoOrMag();
+      if (!currentGallery) return;
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
       if (e.key === 'Escape') closeLightbox();
     });
 
     initGallery();
-    renderServices();
-    renderVideos();
-    renderMagazines();
-  </script>
-    // Render services dynamically
-    function renderServices() {
-      const servicesGrid = document.getElementById('servicesGrid');
-      servicesGrid.innerHTML = '';
-      services.forEach(service => {
-        const card = document.createElement('div');
-        card.className = 'service-card';
-        card.innerHTML = `<h3>${service.title}</h3><p>${service.description}</p>`;
-        servicesGrid.appendChild(card);
-      });
-    }
-    
     renderServices();
   </script>
 
