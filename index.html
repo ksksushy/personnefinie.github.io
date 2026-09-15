@@ -503,23 +503,22 @@
     <div class="gallery-grid" id="galleryGrid"></div>
   </section>
 
+  <section id="gallery-videos">
+    <div class="tag">03 · видео</div>
+    <h2>AI-видео <em>проекты</em></h2>
+    <div class="gallery-grid" id="videosGrid"></div>
+  </section>
+
+  <section id="gallery-magazines">
+    <div class="tag">04 · журналы</div>
+    <h2><em>Журналы</em> и публикации</h2>
+    <div class="gallery-grid" id="magazinesGrid"></div>
+  </section>
+
   <section id="services">
-    <div class="tag">03 · услуги</div>
+    <div class="tag">05 · услуги</div>
     <h2>Что можно <em>заказать</em></h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <h3>Генерация изображения</h3>
-        <p>Одна готовая работа под запрос: портрет, концепт или визуал в едином авторском стиле.</p>
-      </div>
-      <div class="service-card">
-        <h3>Серия изображений</h3>
-        <p>Набор из 3–5 работ в едином визуальном стиле для соцсетей, портфолио или презентации.</p>
-      </div>
-      <div class="service-card">
-        <h3>ИИ-видео</h3>
-        <p>Оживление изображения или короткий видео-клип с использованием нейросетей и motion-эффектов.</p>
-      </div>
-    </div>
+    <div class="services-grid" id="servicesGrid"></div>
   </section>
 
   <section id="contact">
@@ -570,7 +569,11 @@
           { src: 'portrait-01.jpg', title: 'Портрет 3/4' },
           { src: 'portrait-02.jpg', title: 'Профиль' },
           { src: 'portrait-03.jpg', title: 'Улыбка' },
-          { src: 'portrait-04.jpg', title: 'Профиль 3/4' }
+          { src: 'portrait-04.jpg', title: 'Профиль 3/4' },
+          { src: 'portrait-05.jpg', title: 'В полный рост' },
+          { src: 'portrait-06.jpg', title: 'Студийный снимок' },
+          { src: 'portrait-07.jpg', title: 'Крупный план' },
+          { src: 'portrait-08.jpg', title: 'Динамичный портрет' }
         ]
       },
       characters: {
@@ -580,7 +583,11 @@
           { src: 'concept-maid.jpg', title: 'Готическая мейд' },
           { src: 'concept-spartan.jpg', title: 'Спартанец (лица)' },
           { src: 'concept-spartan-2.jpg', title: 'Спартанец (полный рост)' },
-          { src: 'concept-hoodie.jpg', title: 'Стрит-стайл' }
+          { src: 'concept-hoodie.jpg', title: 'Стрит-стайл' },
+          { src: 'concept-cyberpunk.jpg', title: 'Киберпанк' },
+          { src: 'concept-fantasy.jpg', title: 'Фэнтези воин' },
+          { src: 'concept-minimal.jpg', title: 'Минимализм' },
+          { src: 'concept-dramatic.jpg', title: 'Драматичный образ' }
         ]
       },
       portraits_shoot: {
@@ -588,10 +595,41 @@
         thumb: 'product-02.jpg',
         images: [
           { src: 'product-02.jpg', title: 'В полный рост' },
-          { src: 'product-01.jpg', title: 'Крупный план' }
+          { src: 'product-01.jpg', title: 'Крупный план' },
+          { src: 'product-03.jpg', title: 'Боковой ракурс' },
+          { src: 'product-04.jpg', title: 'На природе' },
+          { src: 'product-05.jpg', title: 'В студии' },
+          { src: 'product-06.jpg', title: 'Портрет в движении' }
         ]
       }
     };
+
+    const services = [
+      {
+        title: 'Генерация портрета',
+        description: 'Один готовый портрет под запрос в вашем стиле — фотореалистичный или стилизованный.'
+      },
+      {
+        title: 'Серия из 3–5 портретов',
+        description: 'Набор портретов в едином визуальном стиле для портфолио или социальных сетей.'
+      },
+      {
+        title: 'Персонаж для проекта',
+        description: 'Разработка уникального персонажа с несколькими вариантами образов и поз.'
+      },
+      {
+        title: 'Концепт-арт сессия',
+        description: 'Исследование визуального направления: 5–10 вариантов дизайна для выбора.'
+      },
+      {
+        title: 'AI-видео портрет',
+        description: 'Оживление портрета или короткое видео с motion-эффектами (5–15 секунд).'
+      },
+      {
+        title: 'Апскейл и ретушь',
+        description: 'Увеличение изображения в качестве + профессиональная обработка сгенерированного контента.'
+      }
+    ];
 
     let currentGallery = null;
     let currentIndex = 0;
@@ -651,6 +689,17 @@
       showImage();
     }
 
+    function renderServices() {
+      const servicesGrid = document.getElementById('servicesGrid');
+      servicesGrid.innerHTML = '';
+      services.forEach(service => {
+        const card = document.createElement('div');
+        card.className = 'service-card';
+        card.innerHTML = `<h3>${service.title}</h3><p>${service.description}</p>`;
+        servicesGrid.appendChild(card);
+      });
+    }
+
     function handleForm(e) {
       e.preventDefault();
       const btn = e.target.querySelector('button');
@@ -664,13 +713,30 @@
     }
 
     document.addEventListener('keydown', (e) => {
-      if (!currentGallery) return;
-      if (e.key === 'ArrowRight') nextImage();
-      if (e.key === 'ArrowLeft') prevImage();
+      if (!currentGallery && !videoIndex && !magazineIndex) return;
+      if (e.key === 'ArrowRight') nextVideoOrMag();
+      if (e.key === 'ArrowLeft') prevVideoOrMag();
       if (e.key === 'Escape') closeLightbox();
     });
 
     initGallery();
+    renderServices();
+    renderVideos();
+    renderMagazines();
+  </script>
+    // Render services dynamically
+    function renderServices() {
+      const servicesGrid = document.getElementById('servicesGrid');
+      servicesGrid.innerHTML = '';
+      services.forEach(service => {
+        const card = document.createElement('div');
+        card.className = 'service-card';
+        card.innerHTML = `<h3>${service.title}</h3><p>${service.description}</p>`;
+        servicesGrid.appendChild(card);
+      });
+    }
+    
+    renderServices();
   </script>
 
 </body>
