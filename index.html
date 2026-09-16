@@ -111,6 +111,16 @@
     margin-bottom: 40px;
   }
 
+  .hero-note {
+    max-width: 460px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-style: italic;
+    font-family: var(--serif);
+    opacity: 0.7;
+    margin: -22px 0 40px;
+  }
+
   .btn {
     display: inline-block;
     padding: 14px 32px;
@@ -128,6 +138,11 @@
     border-color: var(--accent);
     background: var(--accent);
     color: #fff;
+  }
+
+  .btn-telegram {
+    margin-top: 18px;
+    border-color: rgba(255,255,255,0.16);
   }
 
   @media (max-width: 768px) {
@@ -457,8 +472,9 @@
 <!-- HERO -->
 <header class="hero">
   <div class="hero-label">personnefinie · AI Lab</div>
-  <h1 class="hero-title">Исследую<br>визуальные<br><em>возможности</em><br>нейросетей</h1>
-  <p class="hero-desc">Изображения и эксперименты на грани технологии и искусства.</p>
+  <h1 class="hero-title">AI-визуалы,<br>видео и визуальные<br><em>концепции</em></h1>
+  <p class="hero-desc">Создаю реалистичные и стилизованные изображения, короткие AI-видео и визуальные серии для брендов, соцсетей и личных проектов.</p>
+  <p class="hero-note">На грани технологии, визуального эксперимента и арт-дирекшна.</p>
   <a href="#works" class="btn">Смотреть работы</a>
 </header>
 
@@ -470,16 +486,16 @@
   </div>
   <div class="about-grid">
     <div class="about-item">
-      <h3>Инженерное мышление</h3>
-      <p>Опыт в точных построениях помогает выстраивать композицию в генеративных работах — не просто красиво, а осмысленно.</p>
+      <h3>Что я делаю</h3>
+      <p>Работаю с генеративными моделями для изображений и видео: создаю визуальные концепции, персонажей, серии кадров и короткие AI-ролики.</p>
     </div>
     <div class="about-item">
-      <h3>Художественный взгляд</h3>
-      <p>Годы в тату-искусстве развили чувство линии, баланса и стиля — это переносится в работу с промптами и генерацией.</p>
+      <h3>Подход</h3>
+      <p>Мне важны не просто красивые генерации, а идея, композиция, атмосфера и цельная визуальная подача.</p>
     </div>
     <div class="about-item">
-      <h3>ИИ-исследование</h3>
-      <p>Изучаю генеративные модели: Midjourney, Stable Diffusion — превращаю технологию в авторский визуальный язык.</p>
+      <h3>Бэкграунд</h3>
+      <p>За этим стоит визуальный опыт — от точных построений до работы с линией и образом. Это переносится в генерацию и промпты.</p>
     </div>
   </div>
 </section>
@@ -491,35 +507,53 @@
     <h2 class="section-title">Каталог работ</h2>
   </div>
 
-  <!-- VIDEO -->
+  <!-- ============================================================
+       ПРИОРИТЕТ РАБОТ (порядок групп и элементов внутри массивов WORKS):
+         1. AI-видео бойца / fight intro
+         2. fashion / editorial визуалы
+         3. журнальные обложки / editorial layout
+         4. Travel / персонаж / storyboard
+         5. Misa / cinematic remake
+         6. tattoo visual / коммерческий кейс
+       Переставляй порядок элементов в массивах WORKS (в <script> ниже).
+       Если работы ещё нет — просто оставь комментарий в массиве, не
+       добавляй файл, которого нет, чтобы не ломать галерею.
+       ============================================================ -->
+
+  <!-- 1 · AI-ВИДЕО (бойец / fight intro) -->
   <div class="gallery-group">
     <div class="group-label">AI-видео</div>
     <div class="gallery-grid" id="grid-video"></div>
   </div>
 
-  <!-- PORTRAITS -->
+  <!-- 2 · FASHION / EDITORIAL + портретная съёмка -->
   <div class="gallery-group">
-    <div class="group-label">Портреты</div>
-    <div class="gallery-grid" id="grid-portrait"></div>
+    <div class="group-label">Fashion / Editorial</div>
+    <div class="gallery-grid" id="grid-product"></div>
   </div>
 
-  <!-- CONCEPTS -->
+  <!-- 3 · ЖУРНАЛЬНЫЕ ОБЛОЖКИ / EDITORIAL LAYOUT -->
+  <div class="gallery-group">
+    <div class="group-label">Журналы и обложки</div>
+    <div class="gallery-grid" id="grid-magazine"></div>
+  </div>
+
+  <!-- 4 · TRAVEL / ПЕРСОНАЖ / STORYBOARD -->
   <div class="gallery-group">
     <div class="group-label">Персонажи</div>
     <div class="gallery-grid" id="grid-concept"></div>
   </div>
 
-  <!-- PRODUCT -->
+  <!-- 5 · ПОРТРЕТЫ -->
   <div class="gallery-group">
-    <div class="group-label">Портретная съёмка</div>
-    <div class="gallery-grid" id="grid-product"></div>
+    <div class="group-label">Портреты</div>
+    <div class="gallery-grid" id="grid-portrait"></div>
   </div>
 
-  <!-- MAGAZINES -->
-  <div class="gallery-group">
-    <div class="group-label">Журналы</div>
-    <div class="gallery-grid" id="grid-magazine"></div>
-  </div>
+  <!-- TODO (добавить, когда файлы будут готовы):
+       · Misa / cinematic remake   -> misa-01.jpg ...
+       · tattoo visual / commercial -> tattoo-01.jpg ...
+       Прописать их в массиве WORKS и вывести отдельной группой. -->
 </section>
 
 <!-- SERVICES -->
@@ -530,24 +564,20 @@
   </div>
   <div class="services-grid">
     <div class="service-card">
-      <h3>Портрет</h3>
-      <p>Индивидуальный ИИ-портрет по твоим референсам и характеру.</p>
-      <div class="service-price">от 2 000 ₽</div>
+      <h3>AI-визуал для рекламы и соцсетей</h3>
+      <p>Реалистичные и стилизованные изображения для постов, рекламы, обложек, афиш и коммерческих задач.</p>
     </div>
     <div class="service-card">
-      <h3>Персонаж</h3>
-      <p>Концепт-арт персонажа: от идеи до готового визуального образа.</p>
-      <div class="service-price">от 3 000 ₽</div>
+      <h3>AI-видео / reels</h3>
+      <p>Короткие атмосферные ролики, cinematic-сцены, персонажи, анимация изображений и монтаж.</p>
     </div>
     <div class="service-card">
-      <h3>Журнал</h3>
-      <p>Серия разворотов в стиле глянцевого издания — обложка и страницы.</p>
-      <div class="service-price">от 5 000 ₽</div>
+      <h3>Персонаж или образ по фото</h3>
+      <p>Реалистичная или стилизованная подача человека в образе героя, персонажа, fashion-съёмки или визуальной истории.</p>
     </div>
     <div class="service-card">
-      <h3>Видео</h3>
-      <p>Короткий динамичный ИИ-ролик для соцсетей или презентации.</p>
-      <div class="service-price">от 6 000 ₽</div>
+      <h3>Журналы, обложки, каталоги и editorial design</h3>
+      <p>Многостраничные проекты, обложки, визуальные серии, меню, каталоги и журнальные макеты.</p>
     </div>
   </div>
 </section>
@@ -566,6 +596,9 @@
       <textarea placeholder="О задумке..." required></textarea>
       <button type="submit" class="btn">Отправить</button>
     </form>
+    <a href="https://t.me/" target="_blank" rel="noopener" class="btn btn-telegram">
+      Написать в Telegram
+    </a>
   </div>
 </section>
 
