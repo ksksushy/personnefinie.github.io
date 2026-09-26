@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>personnefinie — AI Lab</title>
+<title>personnefinie — визуальный архив</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -32,7 +32,7 @@
     overflow-x: hidden;
   }
 
-  /* ---------- NAV ---------- */
+  /* NAV */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -41,14 +41,14 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    background: rgba(10,10,11,0.75);
+    background: rgba(10,10,11,0.85);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--line);
   }
 
   .nav-logo {
     font-family: var(--serif);
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     letter-spacing: 0.02em;
   }
   .nav-logo span { color: var(--accent); }
@@ -61,30 +61,33 @@
   .nav-links a {
     color: var(--muted);
     text-decoration: none;
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     transition: color 0.3s;
+    cursor: pointer;
   }
-  .nav-links a:hover { color: var(--text); }
+  .nav-links a:hover { color: var(--accent); }
 
   @media (max-width: 768px) {
     nav { padding: 16px 20px; }
     .nav-links { display: none; }
+    .nav-logo { font-size: 1rem; }
   }
 
-  /* ---------- HERO ---------- */
+  /* HERO */
   .hero {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 120px 40px 60px;
+    padding: 120px 40px 80px;
     position: relative;
+    margin-top: 60px;
   }
 
   .hero-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--accent);
@@ -93,42 +96,29 @@
 
   .hero-title {
     font-family: var(--serif);
-    font-size: clamp(3rem, 11vw, 9rem);
-    line-height: 0.95;
+    font-size: clamp(2.5rem, 10vw, 7rem);
+    line-height: 1;
     font-weight: 300;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
     margin-bottom: 32px;
-  }
-  .hero-title em {
-    font-style: italic;
-    color: var(--accent);
   }
 
   .hero-desc {
-    max-width: 460px;
+    max-width: 500px;
     color: var(--muted);
-    font-size: 1.05rem;
-    margin-bottom: 40px;
-  }
-
-  .hero-note {
-    max-width: 460px;
-    color: var(--muted);
-    font-size: 0.85rem;
-    font-style: italic;
-    font-family: var(--serif);
-    opacity: 0.7;
-    margin: -22px 0 40px;
+    font-size: 1rem;
+    margin-bottom: 48px;
+    line-height: 1.7;
   }
 
   .btn {
     display: inline-block;
-    padding: 14px 32px;
+    padding: 12px 28px;
     border: 1px solid var(--line);
     color: var(--text);
     text-decoration: none;
-    font-size: 0.8rem;
-    letter-spacing: 0.12em;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     transition: all 0.3s;
     cursor: pointer;
@@ -140,236 +130,191 @@
     color: #fff;
   }
 
-  .btn-telegram {
-    margin-top: 18px;
-    border-color: rgba(255,255,255,0.16);
-  }
-
   @media (max-width: 768px) {
-    .hero { padding: 100px 20px 40px; }
+    .hero { padding: 100px 20px 60px; margin-top: 60px; }
+    .hero-title { font-size: clamp(1.8rem, 7vw, 3rem); }
   }
 
-  /* ---------- SECTIONS ---------- */
+  /* PORTFOLIO SECTION */
   section { padding: 100px 40px; }
-  @media (max-width: 768px) { section { padding: 64px 20px; } }
+  @media (max-width: 768px) { section { padding: 60px 20px; } }
 
   .section-head {
-    display: flex;
-    align-items: baseline;
-    gap: 20px;
-    margin-bottom: 48px;
-    border-bottom: 1px solid var(--line);
-    padding-bottom: 20px;
+    margin-bottom: 60px;
   }
 
   .section-num {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     letter-spacing: 0.2em;
     color: var(--accent);
-    font-family: var(--sans);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
   }
 
   .section-title {
     font-family: var(--serif);
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(2rem, 6vw, 3.5rem);
     font-weight: 300;
+    margin-bottom: 16px;
   }
 
-  /* ---------- ABOUT ---------- */
-  .about-grid {
+  /* FOLDERS GRID */
+  .folders-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    margin-bottom: 80px;
   }
 
-  .about-item h3 {
+  .folder {
+    position: relative;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: var(--bg-soft);
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .folder:hover {
+    border-color: rgba(200,53,47,0.5);
+    transform: translateY(-4px);
+  }
+
+  .folder-cover {
+    width: 100%;
+    flex-grow: 1;
+    background: var(--bg-soft);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .folder-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .folder:hover .folder-cover img {
+    transform: scale(1.05);
+  }
+
+  .folder-meta {
+    padding: 20px;
+    border-top: 1px solid var(--line);
+    background: var(--bg);
+  }
+
+  .folder-title {
     font-family: var(--serif);
-    font-size: 1.5rem;
-    margin-bottom: 12px;
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+
+  .folder-count {
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  /* FOLDER OPEN STATE */
+  .folder.open .folder-cover {
+    display: none;
+  }
+
+  .folder.open .folder-meta {
+    border-top: none;
+    padding: 0;
+  }
+
+  .folder-content {
+    display: none;
+    padding: 24px;
+    max-height: 600px;
+    overflow-y: auto;
+  }
+
+  .folder.open .folder-content {
+    display: block;
+  }
+
+  .folder-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .folder-header h3 {
+    font-family: var(--serif);
+    font-size: 1.2rem;
     font-weight: 400;
   }
-  .about-item p {
+
+  .folder-close {
+    background: none;
+    border: none;
     color: var(--muted);
-    font-size: 0.95rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.3s;
   }
+  .folder-close:hover { color: var(--accent); }
 
-  /* ---------- GALLERY ---------- */
-  .gallery-group { margin-bottom: 56px; }
-
-  .group-label {
-    font-size: 0.8rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 18px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .group-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--line);
-  }
-
-  .gallery-grid {
+  .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 12px;
   }
 
-  .gallery-card {
+  .project-card {
     position: relative;
-    aspect-ratio: 1 / 1;
-    border-radius: 8px;
+    aspect-ratio: 1;
+    border-radius: 6px;
     overflow: hidden;
     border: 1px solid var(--line);
     cursor: pointer;
-    background: var(--bg-soft);
-    transition: transform 0.3s, border-color 0.3s;
-  }
-  .gallery-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(200,53,47,0.5);
+    background: var(--bg);
+    transition: all 0.3s;
   }
 
-  .gallery-card img {
+  .project-card:hover {
+    border-color: rgba(200,53,47,0.5);
+    transform: scale(1.05);
+  }
+
+  .project-card img,
+  .project-card video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.5s;
   }
-  .gallery-card:hover img { transform: scale(1.05); }
 
-  .card-badge {
+  .project-badge {
     position: absolute;
-    top: 8px; right: 8px;
-    background: rgba(10,10,11,0.75);
+    top: 6px; right: 6px;
+    background: rgba(10,10,11,0.8);
     backdrop-filter: blur(6px);
     border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 20px;
-    padding: 3px 10px;
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text);
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .gallery-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(10,10,11,0.92) 0%, transparent 55%);
-    display: flex;
-    align-items: flex-end;
-    padding: 14px;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .gallery-card:hover .gallery-overlay { opacity: 1; }
-
-  .gallery-overlay h3 {
-    font-family: var(--serif);
-    font-size: 1.05rem;
-    font-weight: 400;
-  }
-
-  /* magazine cards show multiple pages */
-  .gallery-card .pages-count {
-    position: absolute;
-    bottom: 8px; right: 8px;
-    background: rgba(10,10,11,0.75);
-    backdrop-filter: blur(6px);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 20px;
-    padding: 3px 10px;
-    font-size: 0.6rem;
-    letter-spacing: 0.08em;
-    color: var(--text);
-  }
-
-  /* ---------- SERVICES ---------- */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-  }
-  .service-card {
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 28px;
-    transition: border-color 0.3s, background 0.3s;
-  }
-  .service-card:hover {
-    border-color: rgba(200,53,47,0.4);
-    background: var(--bg-soft);
-  }
-  .service-card h3 {
-    font-family: var(--serif);
-    font-size: 1.4rem;
-    font-weight: 400;
-    margin-bottom: 10px;
-  }
-  .service-card p {
-    color: var(--muted);
-    font-size: 0.9rem;
-    margin-bottom: 16px;
-  }
-  .service-price {
-    font-size: 0.75rem;
+    border-radius: 16px;
+    padding: 2px 8px;
+    font-size: 0.55rem;
     letter-spacing: 0.1em;
-    color: var(--accent);
+    color: var(--text);
     text-transform: uppercase;
   }
 
-  /* ---------- CONTACT ---------- */
-  .contact-wrap {
-    max-width: 600px;
-  }
-  .contact-title {
-    font-family: var(--serif);
-    font-size: clamp(2.5rem, 7vw, 5rem);
-    font-weight: 300;
-    line-height: 1;
-    margin-bottom: 24px;
-  }
-  .contact-title em { font-style: italic; color: var(--accent); }
-  .contact-text { color: var(--muted); margin-bottom: 32px; }
-
-  form { display: flex; flex-direction: column; gap: 14px; max-width: 420px; }
-  input, textarea {
-    background: var(--bg-soft);
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    padding: 14px 16px;
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 0.9rem;
-    outline: none;
-    transition: border-color 0.3s;
-  }
-  input:focus, textarea:focus { border-color: var(--accent); }
-  textarea { min-height: 110px; resize: vertical; }
-
-  footer {
-    padding: 40px;
-    border-top: 1px solid var(--line);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
-    font-size: 0.8rem;
-    color: var(--muted);
-  }
-  footer a { color: var(--muted); text-decoration: none; transition: color 0.3s; }
-  footer a:hover { color: var(--accent); }
-
-  /* ---------- LIGHTBOX ---------- */
-  .lightbox {
+  /* MODAL */
+  .modal {
     position: fixed;
     inset: 0;
     z-index: 1000;
@@ -381,78 +326,164 @@
     flex-direction: column;
     padding: 40px;
   }
-  .lightbox.open { display: flex; }
 
-  .lb-content {
-    max-width: 92vw;
-    max-height: 82vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
-  .lb-content img,
-  .lb-content video {
-    max-width: 92vw;
-    max-height: 82vh;
-    border-radius: 8px;
-    display: block;
-    background: #000;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-  }
+  .modal.open { display: flex; }
 
-  .lb-close {
+  .modal-close {
     position: fixed;
     top: 24px; right: 28px;
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.15);
     color: var(--text);
-    width: 44px; height: 44px;
+    width: 40px; height: 40px;
     border-radius: 50%;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.3s;
+    transition: all 0.3s;
     z-index: 1010;
   }
-  .lb-close:hover { background: var(--accent); }
+  .modal-close:hover { background: var(--accent); }
 
-  .lb-nav {
+  .modal-nav {
     position: fixed;
     top: 50%;
     transform: translateY(-50%);
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.12);
     color: var(--text);
-    width: 48px; height: 48px;
+    width: 44px; height: 44px;
     border-radius: 50%;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.3s;
+    transition: all 0.3s;
     z-index: 1010;
   }
-  .lb-nav:hover { background: var(--accent); }
-  .lb-prev { left: 24px; }
-  .lb-next { right: 24px; }
+  .modal-nav:hover { background: var(--accent); }
+  .modal-prev { left: 24px; }
+  .modal-next { right: 24px; }
 
-  .lb-caption {
-    margin-top: 18px;
-    font-size: 0.85rem;
-    color: var(--muted);
-    letter-spacing: 0.05em;
+  .modal-content {
+    max-width: 90vw;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .modal-media {
+    max-width: 90vw;
+    max-height: 70vh;
+    border-radius: 8px;
+    background: #000;
+  }
+
+  .modal-media img,
+  .modal-media video {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+  }
+
+  .modal-media video { width: 100%; }
+
+  .modal-info {
     text-align: center;
+    max-width: 600px;
+  }
+
+  .modal-title {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+
+  .modal-desc {
+    color: var(--muted);
+    font-size: 0.9rem;
   }
 
   @media (max-width: 768px) {
-    .lb-prev { left: 10px; }
-    .lb-next { right: 10px; }
-    .lb-close { top: 14px; right: 14px; }
-    .likely { }
+    .modal { padding: 20px; }
+    .modal-prev { left: 12px; }
+    .modal-next { right: 12px; }
+    .modal-close { top: 12px; right: 12px; }
+    .modal-media { max-height: 50vh; }
+  }
+
+  /* ABOUT & CONTACT */
+  .about-contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-top: 80px;
+    padding-top: 60px;
+    border-top: 1px solid var(--line);
+  }
+
+  .about-block h3,
+  .contact-block h3 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .about-block p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .contact-links a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+    transition: color 0.3s;
+  }
+  .contact-links a:hover { color: var(--accent); }
+
+  @media (max-width: 768px) {
+    .about-contact { grid-template-columns: 1fr; gap: 40px; }
+    .folders-grid { grid-template-columns: 1fr; }
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--muted);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+  }
+
+  footer {
+    padding: 40px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--line);
   }
 </style>
 </head>
@@ -462,316 +493,282 @@
 <nav>
   <div class="nav-logo">personne<span>finie</span></div>
   <ul class="nav-links">
-    <li><a href="#about">о проекте</a></li>
-    <li><a href="#works">работы</a></li>
-    <li><a href="#services">услуги</a></li>
-    <li><a href="#contact">контакт</a></li>
+    <li><a onclick="scrollTo('works')">Работы</a></li>
+    <li><a onclick="scrollTo('about')">Обо мне</a></li>
+    <li><a onclick="scrollTo('contact')">Контакты</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <header class="hero">
-  <div class="hero-label">personnefinie · AI Lab</div>
-  <h1 class="hero-title">AI-визуалы,<br>видео и визуальные<br><em>концепции</em></h1>
-  <p class="hero-desc">Создаю реалистичные и стилизованные изображения, короткие AI-видео и визуальные серии для брендов, соцсетей и личных проектов.</p>
-  <p class="hero-note">На грани технологии, визуального эксперимента и арт-дирекшна.</p>
-  <a href="#works" class="btn">Смотреть работы</a>
+  <div class="hero-label">персональный архив</div>
+  <h1 class="hero-title">AI-визуалы и визуальные истории</h1>
+  <p class="hero-desc">Создаю реалистичные и стилизованные изображения, AI-видео и визуальные концепции для брендов, соцсетей и личных проектов. Каждый проект — результат продуманного арт-дирекшна.</p>
+  <a href="#works" class="btn" onclick="scrollTo('works'); return false;">Смотреть работы</a>
 </header>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-head">
-    <span class="section-num">01 · о проекте</span>
-    <h2 class="section-title">Технология как холст</h2>
-  </div>
-  <div class="about-grid">
-    <div class="about-item">
-      <h3>Что я делаю</h3>
-      <p>Работаю с генеративными моделями для изображений и видео: создаю визуальные концепции, персонажей, серии кадров и короткие AI-ролики.</p>
-    </div>
-    <div class="about-item">
-      <h3>Подход</h3>
-      <p>Мне важны не просто красивые генерации, а идея, композиция, атмосфера и цельная визуальная подача.</p>
-    </div>
-    <div class="about-item">
-      <h3>Бэкграунд</h3>
-      <p>За этим стоит визуальный опыт — от точных построений до работы с линией и образом. Это переносится в генерацию и промпты.</p>
-    </div>
-  </div>
-</section>
-
-<!-- WORKS -->
+<!-- PORTFOLIO -->
 <section id="works">
   <div class="section-head">
-    <span class="section-num">02 · работы</span>
-    <h2 class="section-title">Каталог работ</h2>
+    <span class="section-num">01 · Архив работ</span>
+    <h2 class="section-title">Визуальные проекты</h2>
   </div>
 
-  <!-- ============================================================
-       ПРИОРИТЕТ РАБОТ (порядок групп и элементов внутри массивов WORKS):
-         1. AI-видео бойца / fight intro
-         2. fashion / editorial визуалы
-         3. журнальные обложки / editorial layout
-         4. Travel / персонаж / storyboard
-         5. Misa / cinematic remake
-         6. tattoo visual / коммерческий кейс
-       Переставляй порядок элементов в массивах WORKS (в <script> ниже).
-       Если работы ещё нет — просто оставь комментарий в массиве, не
-       добавляй файл, которого нет, чтобы не ломать галерею.
-       ============================================================ -->
-
-  <!-- 1 · AI-ВИДЕО (бойец / fight intro) -->
-  <div class="gallery-group">
-    <div class="group-label">AI-видео</div>
-    <div class="gallery-grid" id="grid-video"></div>
-  </div>
-
-  <!-- 2 · FASHION / EDITORIAL + портретная съёмка -->
-  <div class="gallery-group">
-    <div class="group-label">Fashion / Editorial</div>
-    <div class="gallery-grid" id="grid-product"></div>
-  </div>
-
-  <!-- 3 · ЖУРНАЛЬНЫЕ ОБЛОЖКИ / EDITORIAL LAYOUT -->
-  <div class="gallery-group">
-    <div class="group-label">Журналы и обложки</div>
-    <div class="gallery-grid" id="grid-magazine"></div>
-  </div>
-
-  <!-- 4 · TRAVEL / ПЕРСОНАЖ / STORYBOARD -->
-  <div class="gallery-group">
-    <div class="group-label">Персонажи</div>
-    <div class="gallery-grid" id="grid-concept"></div>
-  </div>
-
-  <!-- 5 · ПОРТРЕТЫ -->
-  <div class="gallery-group">
-    <div class="group-label">Портреты</div>
-    <div class="gallery-grid" id="grid-portrait"></div>
-  </div>
-
-  <!-- TODO (добавить, когда файлы будут готовы):
-       · Misa / cinematic remake   -> misa-01.jpg ...
-       · tattoo visual / commercial -> tattoo-01.jpg ...
-       Прописать их в массиве WORKS и вывести отдельной группой. -->
-</section>
-
-<!-- SERVICES -->
-<section id="services">
-  <div class="section-head">
-    <span class="section-num">03 · услуги</span>
-    <h2 class="section-title">Что можно заказать</h2>
-  </div>
-  <div class="services-grid">
-    <div class="service-card">
-      <h3>AI-визуал для рекламы и соцсетей</h3>
-      <p>Реалистичные и стилизованные изображения для постов, рекламы, обложек, афиш и коммерческих задач.</p>
-    </div>
-    <div class="service-card">
-      <h3>AI-видео / reels</h3>
-      <p>Короткие атмосферные ролики, cinematic-сцены, персонажи, анимация изображений и монтаж.</p>
-    </div>
-    <div class="service-card">
-      <h3>Персонаж или образ по фото</h3>
-      <p>Реалистичная или стилизованная подача человека в образе героя, персонажа, fashion-съёмки или визуальной истории.</p>
-    </div>
-    <div class="service-card">
-      <h3>Журналы, обложки, каталоги и editorial design</h3>
-      <p>Многостраничные проекты, обложки, визуальные серии, меню, каталоги и журнальные макеты.</p>
-    </div>
+  <div class="folders-grid" id="folders-grid">
+    <!-- Folders will be inserted here -->
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
+<!-- ABOUT & CONTACT -->
+<section id="about">
   <div class="section-head">
-    <span class="section-num">04 · контакт</span>
-    <h2 class="section-title">Есть идея?</h2>
+    <span class="section-num">02 · О проекте</span>
+    <h2 class="section-title">Кто я и что я делаю</h2>
   </div>
-  <div class="contact-wrap">
-    <p class="contact-text">Напиши пару слов о задумке — отвечу в ближайшее время.</p>
-    <form onsubmit="event.preventDefault(); this.reset(); alert('Спасибо! Сообщение отправлено.');">
-      <input type="text" placeholder="Имя" required>
-      <input type="email" placeholder="Email" required>
-      <textarea placeholder="О задумке..." required></textarea>
-      <button type="submit" class="btn">Отправить</button>
-    </form>
-    <a href="https://t.me/" target="_blank" rel="noopener" class="btn btn-telegram">
-      Написать в Telegram
-    </a>
+
+  <div class="about-contact">
+    <div class="about-block">
+      <h3>О мне</h3>
+      <p>Работаю с генеративными моделями для изображений и видео. Использую их как инструмент для создания цельных визуальных идей, где важны композиция, атмосфера и визуальный язык.</p>
+      <p>Собираю визуальные концепции, серии изображений, AI-видео и digital-проекты для личных и коммерческих задач. Каждый проект начинается с идеи и заканчивается готовым результатом.</p>
+    </div>
+
+    <div class="contact-block" id="contact">
+      <h3>Контакты</h3>
+      <div class="contact-links">
+        <a href="https://www.instagram.com/personnefinie/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://t.me/personnefinie" target="_blank" rel="noopener">Telegram</a>
+        <a href="/cdn-cgi/l/email-protection#3b535e5757547b4b5e49485455555e5d5255525e15585456">Email</a>
+      </div>
+    </div>
   </div>
 </section>
 
 <footer>
-  <span>© 2026 personnefinie AI Lab. generative visuals.</span>
-  <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+  © 2026 personnefinie · AI visual archive
 </footer>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <button class="lb-close" onclick="closeLightbox()">✕</button>
-  <button class="lb-nav lb-prev" onclick="navigate(-1)">‹</button>
-  <button class="lb-nav lb-next" onclick="navigate(1)">›</button>
-  <div class="lb-content" id="lb-content"></div>
-  <div class="lb-caption" id="lb-caption"></div>
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <button class="modal-close" onclick="closeModal()">✕</button>
+  <button class="modal-nav modal-prev" onclick="prevProject()">‹</button>
+  <button class="modal-nav modal-next" onclick="nextProject()">›</button>
+  <div class="modal-content">
+    <div class="modal-media" id="modal-media"></div>
+    <div class="modal-info">
+      <div class="modal-title" id="modal-title"></div>
+      <div class="modal-desc" id="modal-desc"></div>
+    </div>
+  </div>
 </div>
 
-<script>
-// ---------- ДАННЫЕ ГАЛЕРЕИ (только реальные файлы) ----------
-const WORKS = {
-  video: [
-    { type: 'video', src: 'video-01.mp4', poster: 'video-01.jpg', title: 'AI-видео · экспериментальный ролик' }
-  ],
-  portrait: [
-    { type: 'image', src: 'portrait-01.jpg', title: 'Портрет 01' },
-    { type: 'image', src: 'portrait-02.jpg', title: 'Портрет 02' },
-    { type: 'image', src: 'portrait-03.jpg', title: 'Портрет 03' },
-    { type: 'image', src: 'portrait-04.jpg', title: 'Портрет 04' }
-  ],
-  concept: [
-    { type: 'image', src: 'concept-hoodie.jpg', title: 'Персонаж · Hoodie' },
-    { type: 'image', src: 'concept-maid.jpg', title: 'Персонаж · Maid' },
-    { type: 'image', src: 'concept-spartan.jpg', title: 'Персонаж · Spartan' },
-    { type: 'image', src: 'concept-spartan-2.jpg', title: 'Персонаж · Spartan II' }
-  ],
-  product: [
-    { type: 'image', src: 'product-01.jpg', title: 'Портретная съёмка 01' },
-    { type: 'image', src: 'product-02.jpg', title: 'Портретная съёмка 02' }
-  ],
-  magazine: [
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Portfolio data structure
+const portfolio = {
+  folders: [
     {
-      type: 'magazine',
-      title: 'Журнал 01',
-      pages: ['magazine-01-cover.jpg', 'magazine-01-page-01.jpg', 'magazine-01-page-02.jpg']
+      id: 'ai-video',
+      title: 'AI-видео',
+      cover: 'video-01.jpg',
+      projects: [
+        { type: 'video', src: 'video-01.mp4', poster: 'video-01.jpg', title: 'AI-видео', desc: 'Экспериментальный cinematic-ролик' }
+      ]
     },
     {
-      type: 'magazine',
-      title: 'Журнал 02',
-      pages: ['magazine-02-cover.jpg', 'magazine-02-page-01.jpg', 'magazine-02-page-02.jpg']
+      id: 'fashion-editorial',
+      title: 'Fashion / Editorial',
+      cover: 'product-01.jpg',
+      projects: [
+        { type: 'image', src: 'product-01.jpg', title: 'Fashion Concept 01', desc: 'Портретная съёмка с fashion-акцентом' },
+        { type: 'image', src: 'product-02.jpg', title: 'Fashion Concept 02', desc: 'Стилизованный editorial-визуал' }
+      ]
+    },
+    {
+      id: 'magazines',
+      title: 'Журналы и обложки',
+      cover: 'magazine-01-cover.jpg',
+      projects: [
+        { type: 'image', src: 'magazine-01-cover.jpg', title: 'Журнал 01 · Обложка', desc: 'Editorial design для журнального проекта' },
+        { type: 'image', src: 'magazine-01-page-01.jpg', title: 'Журнал 01 · Страница 1', desc: 'Разворот первой части' },
+        { type: 'image', src: 'magazine-01-page-02.jpg', title: 'Журнал 01 · Страница 2', desc: 'Разворот второй части' },
+        { type: 'image', src: 'magazine-02-cover.jpg', title: 'Журнал 02 · Обложка', desc: 'Второй выпуск издания' },
+        { type: 'image', src: 'magazine-02-page-01.jpg', title: 'Журнал 02 · Страница 1', desc: 'Разворот первой части' },
+        { type: 'image', src: 'magazine-02-page-02.jpg', title: 'Журнал 02 · Страница 2', desc: 'Разворот второй части' }
+      ]
+    },
+    {
+      id: 'characters',
+      title: 'Персонажи и истории',
+      cover: 'concept-spartan.jpg',
+      projects: [
+        { type: 'image', src: 'concept-spartan.jpg', title: 'Персонаж · Спартанец', desc: 'Концепт воина в деталях' },
+        { type: 'image', src: 'concept-spartan-2.jpg', title: 'Персонаж · Спартанец (полный рост)', desc: 'Портретная версия персонажа' },
+        { type: 'image', src: 'concept-maid.jpg', title: 'Персонаж · Готическая мейд', desc: 'Стилизованный образ персонажа' },
+        { type: 'image', src: 'concept-hoodie.jpg', title: 'Персонаж · Стрит-стайл', desc: 'Casual-концепт персонажа' },
+        { type: 'image', src: 'portrait-01.jpg', title: 'Портрет 01', desc: 'AI-портрет с детализацией' },
+        { type: 'image', src: 'portrait-02.jpg', title: 'Портрет 02', desc: 'Портретное исследование' },
+        { type: 'image', src: 'portrait-03.jpg', title: 'Портрет 03', desc: 'Реалистичный портрет' },
+        { type: 'image', src: 'portrait-04.jpg', title: 'Портрет 04', desc: 'Портретная композиция' }
+      ]
     }
   ]
 };
 
-// ---------- ПОСТРОЕНИЕ ГАЛЕРЕИ ----------
-function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+let currentProjects = [];
+let currentProjectIndex = 0;
+let currentFolderId = null;
 
-function buildGallery(containerId, items) {
-  const grid = document.getElementById(containerId);
-  if (!grid) return;
-
-  items.forEach((item, idx) => {
-    const card = document.createElement('div');
-    card.className = 'gallery-card';
-
-    let coverSrc = item.type === 'magazine' ? item.pages[0] : (item.poster || item.src);
-
-    if (item.type === 'video') {
-      card.innerHTML =
-        '<img src="' + esc(coverSrc) + '" alt="' + esc(item.title) + '" loading="lazy">' +
-        '<span class="card-badge">▶ видео</span>' +
-        '<div class="gallery-overlay"><h3>' + esc(item.title) + '</h3></div>';
-      card.onclick = () => openLightbox('video', [item], 0);
-
-    } else if (item.type === 'magazine') {
-      card.innerHTML =
-        '<img src="' + esc(coverSrc) + '" alt="' + esc(item.title) + '" loading="lazy">' +
-        '<span class="card-badge">журнал</span>' +
-        '<span class="pages-count">' + item.pages.length + ' стр.</span>' +
-        '<div class="gallery-overlay"><h3>' + esc(item.title) + '</h3></div>';
-      card.onclick = () => openLightbox('magazine', item.pages.map(p => ({type:'image', src:p, title:item.title})), 0);
-
-    } else {
-      card.innerHTML =
-        '<img src="' + esc(coverSrc) + '" alt="' + esc(item.title) + '" loading="lazy">' +
-        '<div class="gallery-overlay"><h3>' + esc(item.title) + '</h3></div>';
-      card.onclick = () => openLightbox('image', items, idx);
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+  renderFolders();
+  document.addEventListener('keydown', (e) => {
+    if (document.getElementById('modal').classList.contains('open')) {
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft') prevProject();
+      if (e.key === 'ArrowRight') nextProject();
     }
+  });
+});
 
-    grid.appendChild(card);
+function renderFolders() {
+  const grid = document.getElementById('folders-grid');
+  grid.innerHTML = '';
+
+  portfolio.folders.forEach(folder => {
+    const folderEl = document.createElement('div');
+    folderEl.className = 'folder';
+    folderEl.innerHTML = `
+      <div class="folder-cover" onclick="toggleFolder('${folder.id}', event)">
+        <img src="${folder.cover}" alt="${folder.title}">
+      </div>
+      <div class="folder-meta" onclick="toggleFolder('${folder.id}', event)">
+        <div class="folder-title">${folder.title}</div>
+        <div class="folder-count">${folder.projects.length} ${folder.projects.length === 1 ? 'проект' : 'проектов'}</div>
+      </div>
+      <div class="folder-content">
+        <div class="folder-header">
+          <h3>${folder.title}</h3>
+          <button class="folder-close" onclick="toggleFolder('${folder.id}', event)">✕</button>
+        </div>
+        <div class="projects-grid" id="projects-${folder.id}"></div>
+      </div>
+    `;
+    grid.appendChild(folderEl);
+
+    // Render projects inside folder
+    const projectsGrid = folderEl.querySelector(`#projects-${folder.id}`);
+    folder.projects.forEach((project, idx) => {
+      const projectEl = document.createElement('div');
+      projectEl.className = 'project-card';
+      const badge = project.type === 'video' ? '▶' : '';
+      
+      if (project.type === 'video') {
+        projectEl.innerHTML = `
+          <video preload="metadata" playsinline>
+            <source src="${project.src}" type="video/mp4">
+          </video>
+          <div class="project-badge">видео</div>
+        `;
+      } else {
+        projectEl.innerHTML = `
+          <img src="${project.src}" alt="${project.title}">
+        `;
+      }
+      
+      projectEl.onclick = () => openModal(folder.id, idx);
+      projectsGrid.appendChild(projectEl);
+    });
   });
 }
 
-buildGallery('grid-video', WORKS.video);
-buildGallery('grid-portrait', WORKS.portrait);
-buildGallery('grid-concept', WORKS.concept);
-buildGallery('grid-product', WORKS.product);
-buildGallery('grid-magazine', WORKS.magazine);
+function toggleFolder(folderId, event) {
+  event.stopPropagation();
+  const folder = document.querySelector(`[data-folder-id="${folderId}"]`) || 
+                 Array.from(document.querySelectorAll('.folder')).find(el => {
+                   const content = el.querySelector('.folder-content');
+                   return content && content.id && content.id.includes(folderId);
+                 });
 
-// ---------- LIGHTBOX ----------
-let currentItems = [];
-let currentIndex = 0;
-let currentKind = 'image';
+  if (!folder) {
+    const folders = Array.from(document.querySelectorAll('.folder'));
+    const targetFolder = folders.find(f => {
+      const grid = f.querySelector('.projects-grid');
+      return grid && grid.id === `projects-${folderId}`;
+    });
+    if (targetFolder) targetFolder.classList.toggle('open');
+  } else {
+    folder.classList.toggle('open');
+  }
+}
 
-function openLightbox(kind, items, index) {
-  currentKind = kind;
-  currentItems = items;
-  currentIndex = index;
-  renderLightbox();
-  document.getElementById('lightbox').classList.add('open');
+function openModal(folderId, projectIdx) {
+  const folder = portfolio.folders.find(f => f.id === folderId);
+  if (!folder) return;
+
+  currentFolderId = folderId;
+  currentProjects = folder.projects;
+  currentProjectIndex = projectIdx;
+  renderModalContent();
+  document.getElementById('modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
-function closeLightbox() {
-  const lb = document.getElementById('lightbox');
-  lb.classList.remove('open');
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
   document.body.style.overflow = '';
-  const v = lb.querySelector('video');
-  if (v) { v.pause(); v.removeAttribute('src'); v.load(); }
-  document.getElementById('lb-content').innerHTML = '';
 }
 
-function renderLightbox() {
-  const content = document.getElementById('lb-content');
-  const caption = document.getElementById('lb-caption');
-  const item = currentItems[currentIndex];
-  content.innerHTML = '';
+function prevProject() {
+  currentProjectIndex = (currentProjectIndex - 1 + currentProjects.length) % currentProjects.length;
+  renderModalContent();
+}
 
-  if (item.type === 'video') {
+function nextProject() {
+  currentProjectIndex = (currentProjectIndex + 1) % currentProjects.length;
+  renderModalContent();
+}
+
+function renderModalContent() {
+  const project = currentProjects[currentProjectIndex];
+  const mediaEl = document.getElementById('modal-media');
+  mediaEl.innerHTML = '';
+
+  if (project.type === 'video') {
     const v = document.createElement('video');
-    v.src = item.src;
-    if (item.poster) v.poster = item.poster;
     v.controls = true;
     v.autoplay = true;
     v.loop = true;
     v.playsInline = true;
-    v.setAttribute('playsinline', '');
-    content.appendChild(v);
-    v.play().catch(() => {});
-    caption.textContent = item.title || '';
+    const source = document.createElement('source');
+    source.src = project.src;
+    source.type = 'video/mp4';
+    v.appendChild(source);
+    mediaEl.appendChild(v);
   } else {
     const img = document.createElement('img');
-    img.src = item.src;
-    img.alt = item.title || '';
-    content.appendChild(img);
-    let cap = item.title || '';
-    if (currentItems.length > 1) cap += '  ·  ' + (currentIndex + 1) + ' / ' + currentItems.length;
-    caption.textContent = cap;
+    img.src = project.src;
+    img.alt = project.title;
+    mediaEl.appendChild(img);
   }
 
-  const multi = currentItems.length > 1;
-  document.querySelector('.lb-prev').style.display = multi ? 'flex' : 'none';
-  document.querySelector('.lb-next').style.display = multi ? 'flex' : 'none';
+  document.getElementById('modal-title').textContent = project.title;
+  document.getElementById('modal-desc').textContent = project.desc;
+
+  // Show/hide nav buttons
+  document.querySelector('.modal-prev').style.display = currentProjects.length > 1 ? 'flex' : 'none';
+  document.querySelector('.modal-next').style.display = currentProjects.length > 1 ? 'flex' : 'none';
 }
 
-function navigate(dir) {
-  if (currentItems.length <= 1) return;
-  currentIndex = (currentIndex + dir + currentItems.length) % currentItems.length;
-  renderLightbox();
+function scrollTo(section) {
+  const element = document.getElementById(section);
+  if (element) element.scrollIntoView({ behavior: 'smooth' });
 }
 
-// закрытие
-document.getElementById('lightbox').addEventListener('click', (e) => {
-  if (e.target.id === 'lightbox') closeLightbox();
-});
-
-// клавиатура
-document.addEventListener('keydown', (e) => {
-  const lb = document.getElementById('lightbox');
-  if (!lb.classList.contains('open')) return;
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowRight') navigate(1);
-  if (e.key === 'ArrowLeft') navigate(-1);
+// Click outside modal to close
+document.getElementById('modal')?.addEventListener('click', (e) => {
+  if (e.target.id === 'modal') closeModal();
 });
 </script>
+
 </body>
 </html>
